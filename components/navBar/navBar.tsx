@@ -17,7 +17,7 @@ export default function Navbar() {
     ];
 
     return (
-        <nav className="w-full border-b border-gray-200 bg-white px-6 md:px-10 lg:px-12 py-2 sticky z-50 top-0">
+        <nav className="w-full border-b border-gray-200 bg-white px-6 md:px-12 lg:px-14 xl:px-24 py-2 sticky z-50 top-0">
             
             {/* Top bar */}
             <div className="flex justify-between items-center">

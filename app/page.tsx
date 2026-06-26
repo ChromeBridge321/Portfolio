@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import davidImage from "../assets/david.jpeg";
 import { AutoStoriesOutlined } from "@mui/icons-material";
@@ -5,36 +6,39 @@ import { TerminalOutlined } from "@mui/icons-material";
 import { ArrowForward } from "@mui/icons-material";
 export default function Home() {
   return (
-    <div className=" md:bg-cyan-100 lg:bg-green-100 xl:bg-fuchsia-100">
-
+    <div className="">
       {/* Desktop */}
       <div className="hidden md:block">
-        <div className="p-4 flex justify-center items-center">
-          <Image
-            className="rounded-2xl h-52 w-52 sm:h-72 sm:w-72 md:rounded-none"
-            src={davidImage}
-            alt="DG"
-          />
-        </div>
-        <div>
-          <h3>Desarrollador Full-Stack</h3>
-          <p>Hola, soy un desarrollador enfocado en la precisión técnica y la claridad visual. Mi trabajo consiste en transformar problemas complejos en interfaces intuitivas que priorizan la experiencia del usuario y la eficiencia del código.</p>
-          <p>Con más de cinco años de experiencia en el ecosistema de JavaScript y arquitecturas en la nube, ayudo a empresas tecnológicas a escalar sus productos digitales con una visión minimalista y minimalista.</p>
-        </div>
-        <div>
-          <button className="bg-primary text-white active:bg-primary-70 hover:bg-primary-80  rounded-2xl p-2 transition-all duration-100">Ver Proyectos <ArrowForward className="text-white hidden md:block" /></button>
+        {/* Acerca de mi */}
+        <div className="flex flex-row-reverse justify-center items-center px-12 lg:px-14 pt-8 xl:px-20">
+          <div className="p-4 flex justify-center items-center w-1/2 ">
+            <Image
+              className="rounded-2xl h-7w-72 w-72 lg:h-96 lg:w-96 xl:h-auto xl:w-2xl"
+              src={davidImage}
+              alt="DG"
+            />
+          </div>
+          <div className="w-1/2 p-4">
+            <h3 className="text-primary font-semibold mb-2 lg:text-2xl xl:text-4xl xl:mb-6">DESARROLLADOR FULL-STACK</h3>
+            <p className="mb-2 md:hidden lg:block lg:text-xl xl:text-2xl" >Hola, soy David, desarrollador Full-Stack con más de dos años de experiencia en el desarrollo de aplicaciones con Laravel, Angular y tecnologías de despliegue en la nube. Me apasiona transformar ideas en soluciones de software y participar en todo el ciclo de desarrollo, desde la planeación hasta la puesta en producción.</p>
+            <p className="md:hidden lg:block lg:text-xl xl:text-2xl">He colaborado en proyectos para los sectores público y privado, fortaleciendo mis habilidades técnicas y mi enfoque en la creación de aplicaciones escalables, eficientes y de alta calidad. Siempre busco aprender nuevas tecnologías y asumir desafíos que impulsen mi crecimiento profesional.</p>
+            <p className="lg:hidden">Hola, soy David, desarrollador Full-Stack con más de dos años de experiencia en Laravel, Angular y despliegues en la nube. Me especializo en el desarrollo de aplicaciones web, me gusta participar en todas las etapas del ciclo de vida del software, desde la planeación hasta la implementación. He colaborado en proyectos para los sectores público y privado y me apasiona el aprendizaje continuo, así como el desarrollo de soluciones escalables y de alta calidad.</p>
+            <div className="w-full pt-6 flex justify-start items-center">
+              <button className="hidden xl:block xl:text-2xl bg-primary text-white active:bg-primary-70 hover:bg-primary-80 py-2 px-8 w-1/2 me-6 transition-all duration-100">Ver Proyectos <ArrowForward fontSize="large" className=" text-white" /></button>
+              <button className="xl:hidden bg-primary text-white active:bg-primary-70 hover:bg-primary-80 py-2 px-16 w-fit me-6 transition-all duration-100">Ver Proyectos <ArrowForward className=" text-white" /></button>
+
+            </div>
+            {/* Desktop */}
+          </div>
         </div>
 
-        <div>
-          <button className="text-primary active:bg-primary-70 hover:bg-primary-80  rounded-2xl p-2 transition-all duration-100">Saber más</button>
-        </div>
       </div>
 
       {/* Mobile */}
       {/* foto de mi*/}
       <div className="p-4 flex justify-center items-center md:hidden">
         <Image
-          className="rounded-2xl h-52 w-52 sm:h-72 sm:w-72 md:rounded-none hidden md:block"
+          className="rounded-2xl h-52 w-52 sm:h-72 sm:w-72"
           src={davidImage}
           alt="DG"
         />
