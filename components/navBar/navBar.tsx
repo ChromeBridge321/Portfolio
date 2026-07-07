@@ -17,10 +17,10 @@ export default function Navbar() {
     ];
 
     return (
-        <nav className="w-full border-b border-gray-200 bg-white px-6 md:px-12 lg:px-14 xl:px-24 py-2 sticky z-50 top-0">
+        <nav className="w-full border-b border-gray-200 bg-white py-2 sticky z-50 top-0 flex flex-col md:flex-row justify-center items-center px-8 xl:px-0 mb-8 relative">
             
             {/* Top bar */}
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center w-full md:w-268">
                 
                 <h1 className="text-primary font-bold text-3xl">
                     DG
@@ -64,13 +64,13 @@ export default function Navbar() {
 
             {/* Mobile menu */}
             {open && (
-                <div className="md:hidden mt-4 flex flex-col items-start gap-3">
+                <div className="md:hidden absolute top-full left-0 w-full bg-white border-b border-gray-200 shadow-lg flex flex-col items-start gap-1 py-2 px-8 z-50">
                     {items.map((item) => (
                         <Link
                             key={item.name}
                             href={item.href}
                             onClick={() => setOpen(false)}
-                            className={`w-full py-2 border-b ${
+                            className={`w-full py-3 border-b border-gray-200 text-left ${
                                 pathname === item.href
                                     ? "font-bold"
                                     : ""
@@ -80,7 +80,7 @@ export default function Navbar() {
                         </Link>
                     ))}
 
-                    <button className="mt-2 border px-4 py-2 w-full active:bg-primary active:text-white transition-all duration-100">
+                    <button className="mt-2 border px-4 py-3 w-full text-left active:bg-primary active:text-white transition-all duration-100">
                         Resume
                     </button>
                 </div>

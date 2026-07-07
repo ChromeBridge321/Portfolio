@@ -62,3 +62,34 @@
 body {
     font-family: var(--font-inter);
 }
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.tech-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tech-card:hover {
+    background-color: #ffffff;
+    box-shadow: 0 10px 30px -10px rgba(10, 20, 34, 0.1);
+    transform: translateY(-4px);
+}
+
+.tonal-card {
+    background-color: #F9FAFB;
+    border: 1px solid #F3F4F6;
+    transition: all 0.3s ease;
+}
+
+.tonal-card:hover {
+    background-color: #ffffff;
+    box-shadow: 0 10px 30px -10px rgba(10, 20, 34, 0.08);
+    border-color: transparent;
+}
