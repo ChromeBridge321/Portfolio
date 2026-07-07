@@ -90,3 +90,6 @@ Sometimes the user will say "pregunta," "esto es una pregunta" "responde," or si
 
 ## Before starting
 Prioritize planning over execution. First, plan the route to follow before implementing a user's request. Let the user know the path you will take to carry out the task correctly. Always ask the user if you can proceed with the task once the plan is created. Once the user gives you their explicit approval, you can go ahead with implementation. Once implementing a change, make sure that the project always runs correctly without errors usin `npm run build`. in case of an error, correct it.
+
+## Create commit
+When the user says 'commit,' you should run git status in the terminal and create a commit with this structure: title and description of the changes. This commit should be text only dont crate the commit in terminal only the user need the text.
