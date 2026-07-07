@@ -1,8 +1,8 @@
-import calculadoraImg from "@/assets/proyectos/calculadora.jpg"
-import garagemeet from "@/assets/proyectos/garagemeet.png"
-import poelmc from "@/assets/proyectos/poelmc.jpg"
-import topologix from "@/assets/proyectos/topologix.jpg"
-import reporteador from "@/assets/proyectos/reporteador.jpg"
+import calculadoraImg from "@/assets/proyectos/calculadora.avif"
+import garagemeet from "@/assets/proyectos/garagemeet.avif"
+import poelmc from "@/assets/proyectos/poelmc.avif"
+import topologix from "@/assets/proyectos/topologix.avif"
+import reporteador from "@/assets/proyectos/reporteador.avif"
 
 export const proyectos = [
     {
