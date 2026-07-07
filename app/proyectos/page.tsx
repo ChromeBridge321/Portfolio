@@ -24,6 +24,7 @@ export default function Proyectos() {
                                     width={800}
                                     height={192}
                                     quality={100}
+                                    loading="eager"
                                 />
                                 <div className={`transform transition-transform duration-700 group-hover:scale-105 absolute inset-0 bg-black pointer-events-none opacity-10 ${proyecto.imageUrl == "/" ? "hidden" : "block"}`}></div>
                             </div>
@@ -43,7 +44,7 @@ export default function Proyectos() {
                             </div>
                             <div className="flex justify-start pb-4 sm:pb-5 px-4 sm:px-5">
                                 <Link
-                                    className={`py-1.5 sm:py-2 px-4 sm:px-6 text-sm sm:text-md group/link font-bold flex flex-row justify-center items-center ${proyecto.url === "" ? "hidden" : "block"}`} href={proyecto.url}>
+                                    className={`py-1.5 sm:py-2 px-4 sm:px-6 text-sm sm:text-md group/link font-bold flex flex-row justify-center items-center ${proyecto.url === "" ? "hidden" : "block"}`} href={proyecto.url} target="_blank" rel="noopener noreferrer">
                                     Ver Proyecto <span className="transition-all duration-300 group-hover/link:translate-x-1 ps-1"><ArrowForward fontSize="small" /></span>
                                 </Link>
                             </div>

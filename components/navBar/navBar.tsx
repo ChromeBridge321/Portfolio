@@ -17,7 +17,7 @@ export default function Navbar() {
     ];
 
     return (
-        <nav className="w-full border-b border-gray-200 bg-white py-2 sticky z-50 top-0 flex flex-col md:flex-row justify-center items-center px-8 xl:px-0 mb-8 relative">
+        <nav className="w-full border-b border-gray-200 bg-white py-2 z-50 top-0 flex flex-col md:flex-row justify-center items-center px-8 xl:px-0 mb-8 relative">
             
             {/* Top bar */}
             <div className="flex justify-between items-center w-full md:w-268">
@@ -64,7 +64,7 @@ export default function Navbar() {
 
             {/* Mobile menu */}
             {open && (
-                <div className="md:hidden absolute top-full left-0 w-full bg-white border-b border-gray-200 shadow-lg flex flex-col items-start gap-1 py-2 px-8 z-50">
+                <div className="md:hidden absolute top-full left-0 w-full max-h-[80vh] bg-white border-b border-gray-200 shadow-lg flex flex-col items-start gap-1 py-2 px-8 z-50 overflow-y-auto">
                     {items.map((item) => (
                         <Link
                             key={item.name}

@@ -37,7 +37,7 @@ function PhotoCarousel() {
     const next = () => setCurrent((c) => (c + 1) % carouselImages.length)
 
     return (
-        <div className="relative w-full h-[400px] overflow-hidden group">
+        <div className="relative w-full h-100 overflow-hidden group">
             {carouselImages.map((img, i) => (
                 <div
                     key={i}
