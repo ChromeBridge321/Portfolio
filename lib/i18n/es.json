@@ -1,0 +1,93 @@
+{
+    "nav": {
+        "sobreMi": "Sobre Mi",
+        "proyectos": "Proyectos",
+        "tecnologias": "Tecnologias",
+        "hobbies": "Hobbies",
+        "contacto": "Contacto",
+        "resume": "Resume"
+    },
+    "home": {
+        "rol": "DESARROLLADOR FULL-STACK",
+        "introMobile": "Hola soy David, soy un Desarrollador Full-Stack con enfoque en desarrollo frontend.",
+        "introMd": "Hola, soy David, desarrollador Full-Stack con enfoque en frontend. Me apasiona construir interfaces intuitivas, accesibles y de alto rendimiento.",
+        "introDesktop": "Hola, soy David, desarrollador Full-Stack con enfoque en desarrollo frontend y poco más de dos años de experiencia creando aplicaciones web modernas con Angular y Laravel. Me apasiona construir interfaces intuitivas, accesibles y de alto rendimiento.",
+        "introDesktop2": "He colaborado en proyectos para los sectores público y privado, participando en todo el ciclo de desarrollo. Siempre busco aprender nuevas tecnologías y asumir desafíos que impulsen mi crecimiento profesional.",
+        "verProyectos": "Ver Proyectos",
+        "miHistoria": "Mi Historia",
+        "historia": "Con poco más de 2 años de experiencia, me he especializado en construir arquitecturas escalables. Creo que el código no solo debe funcionar, sino que debe ser una obra de ingeniería legible y mantenible para el futuro.",
+        "tecnologias": "Tecnologías",
+        "listoParaVer": "¿Listo para ver mi trabajo en acción?",
+        "verProyectosBtn": "VER PROYECTOS"
+    },
+    "proyectos": {
+        "titulo": "Proyectos",
+        "subtitulo": "Una selección curada de trabajos que demuestran mi enfoque técnico y atención al detalle. Cada pieza refleja un compromiso con la excelencia en el código.",
+        "enDesarrollo": "En Desarrollo",
+        "verProyecto": "Ver Proyecto",
+        "data": {
+            "poelmc": "Plataforma para la consulta de uso de suelo dentro del municipio de Centro del estado de Tabasco, México.",
+            "calculadora": "Proyecto escolar con distintas calculadoras estadisticas desde Cuartiles hasta graficas de Pareto",
+            "topologix": "Proyecto escolar que consiste en un Port Digital del juego de mesa TOPOLOGIX de Djeco",
+            "reporteador": "Plataforma para la consulta y descarga de reporte operativos de Motocompresores de pozos petroleros para la toma de deciciones estrategicas",
+            "garagemeet": "Plataforma para la gestion de talleres mecanicos con integracion de Stripe para pagos online, suscripciones y envio de correos",
+            "infaadep": "Plataforma para la administracion de recursos humanos, adminisracion de personal, vacantes, bolsa de trabajo, entrevistas, entre otras funciones"
+        }
+    },
+    "tecnologias": {
+        "titulo": "Stack Tecnológico",
+        "subtitulo": "Una selección curada de herramientas y lenguajes que utilizo para transformar ideas complejas en realidades digitales elegantes y escalables.",
+        "frontend": "Frontend Development",
+        "intermedio": "Intermedio",
+        "frontendDesc": "Especializado en crear interfaces interactivas y reactivas con énfasis en la accesibilidad y el rendimiento web.",
+        "explorandoAhora": "Explorando ahora",
+        "explorandoDesc": "La tecnología nunca se detiene. Actualmente profundizando en aprender nuevas tecnologias del desarrollo web.",
+        "crecimiento": "Crecimiento Constante",
+        "backend": "Backend & Infra",
+        "herramientas": "Herramientas y Diseño",
+        "proyectoEnMente": "¿Tienes un proyecto en mente?",
+        "hablemosDesc": "Hablemos sobre cómo estas herramientas pueden ayudar a tu visión.",
+        "iniciarConversacion": "Iniciar conversación"
+    },
+    "hobbies": {
+        "titulo": "Fuera del Código",
+        "subtitulo": "El equilibrio es la clave de la creatividad. Estas son las pasiones que mantienen mi mente curiosa y mis perspectivas frescas.",
+        "fotografia": "Fotografía",
+        "capturando": "Capturando Perspectivas",
+        "fotografiaDesc": "Encuentro belleza en la geometría urbana y el minimalismo. Mi cámara es la herramienta que utilizo para documentar cómo la luz interactúa con la arquitectura moderna.",
+        "composicion": "Composición",
+        "luzNatural": "Luz Natural",
+        "gaming": "Gaming",
+        "jugarParaGanar": "Jugar para Ganar",
+        "gamingDesc": "Me apasionan los Shooter y los juegos de estrategia, donde la jugabilidad y la estrategia se encuentran.",
+        "ritual": "Ritual",
+        "culturaMusica": "Cultura de la música",
+        "musicaDesc": "Siempre hay un nuevo artista, género o canción por descubrir. Lo bello de la vida es poder escuchar todo tipo de música.",
+        "seriesPeliculas": "Series & Películas",
+        "historiasInspiran": "Historias que Inspiran",
+        "seriesDesc": "Disfruto de series y películas siempre en busca de algo nuevo que ver y disfrutar solo o acompañado. Fan de la saga de Transformers de Michael Bay.",
+        "citaFinal": "La tecnología es mi oficio, pero la curiosidad es mi motor. Creo que las mejores soluciones nacen de una mente que sabe cuándo desconectarse para volver a conectar mejor."
+    },
+    "contacto": {
+        "titulo": "Hablemos.",
+        "subtitulo": "¿Tienes un proyecto en mente o simplemente quieres saludar? Estoy siempre abierto a discutir nuevas oportunidades y colaboraciones técnicas.",
+        "infoContacto": "Información de contacto",
+        "ubicacion": "Ubicación",
+        "estadoMexico": "Estado de México",
+        "perfilesSociales": "Perfiles Sociales",
+        "disponibleRemoto": "Disponible para proyectos remotos",
+        "nombreCompleto": "Nombre Completo",
+        "tuNombre": "Tu nombre",
+        "correoElectronico": "Correo Electrónico",
+        "mensaje": "Mensaje",
+        "placeholderMensaje": "¿En qué puedo ayudarte?",
+        "enviarMensaje": "Enviar Mensaje",
+        "enviando": "Enviando...",
+        "mensajeEnviado": "¡Mensaje Enviado!",
+        "graciasContactar": "Gracias por contactar. Te responderé lo antes posible, normalmente en menos de 24 horas.",
+        "enviarOtro": "Enviar otro mensaje"
+    },
+    "footer": {
+        "derechos": "© 2024 Developer Portfolio. All rights reserved."
+    }
+}

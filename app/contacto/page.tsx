@@ -1,11 +1,13 @@
 "use client";
 import { useState } from "react";
 import { MailOutlined, LocationOnOutlined, CodeOutlined, WorkOutlined, MapOutlined, CheckCircleOutlined, SendOutlined } from "@mui/icons-material";
+import { useI18n } from "@/lib/i18n/context";
 
 export default function Contacto() {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const { t } = useI18n();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,9 +36,9 @@ export default function Contacto() {
       <div className="max-w-6xl mx-auto animate-fade-in-up">
         {/* Header */}
         <div className="text-center mb-20 mt-8">
-          <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4">Hablemos.</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4">{t("contacto.titulo")}</h1>
           <p className="text-lg text-secondary-40 max-w-2xl mx-auto">
-            ¿Tienes un proyecto en mente o simplemente quieres saludar? Estoy siempre abierto a discutir nuevas oportunidades y colaboraciones técnicas.
+            {t("contacto.subtitulo")}
           </p>
         </div>
 
@@ -45,7 +47,7 @@ export default function Contacto() {
           <div className="lg:col-span-5 space-y-10">
             {/* Info Card */}
             <div className="tonal-card p-8 rounded-xl">
-              <h2 className="text-lg font-semibold text-primary mb-6">Información de contacto</h2>
+              <h2 className="text-lg font-semibold text-primary mb-6">{t("contacto.infoContacto")}</h2>
               <div className="space-y-4">
                 <div className="flex items-center gap-4 group cursor-pointer">
                   <div className="w-10 h-10 rounded-full bg-secondary-90 flex items-center justify-center text-primary transition-transform group-hover:scale-110">
@@ -61,8 +63,8 @@ export default function Contacto() {
                     <LocationOnOutlined />
                   </div>
                   <div>
-                    <p className="text-xs text-secondary-40 uppercase tracking-wider font-medium">Ubicación</p>
-                    <p className="text-base text-primary font-medium">Estado de México</p>
+                    <p className="text-xs text-secondary-40 uppercase tracking-wider font-medium">{t("contacto.ubicacion")}</p>
+                    <p className="text-base text-primary font-medium">{t("contacto.estadoMexico")}</p>
                   </div>
                 </div>
               </div>
@@ -70,7 +72,7 @@ export default function Contacto() {
 
             {/* Social Card */}
             <div className="tonal-card p-8 rounded-xl">
-              <h2 className="text-lg font-semibold text-primary mb-6">Perfiles Sociales</h2>
+              <h2 className="text-lg font-semibold text-primary mb-6">{t("contacto.perfilesSociales")}</h2>
               <div className="flex gap-4">
                 <a className="flex-1 flex flex-col items-center justify-center p-4 border border-neutral-90 rounded-lg hover:border-primary transition-colors group" href="https://github.com/ChromeBridge321" target="_blank" rel="noopener noreferrer">
                   <CodeOutlined className="text-2xl text-secondary-40 group-hover:text-primary mb-2" />
@@ -89,7 +91,7 @@ export default function Contacto() {
                 <MapOutlined className="text-primary/20 text-[80px]!" />
               </div>
               <div className="absolute bottom-4 left-4 bg-white px-4 py-1 rounded-full shadow-sm text-xs font-medium text-primary">
-                Disponible para proyectos remotos
+                {t("contacto.disponibleRemoto")}
               </div>
             </div>
           </div>
@@ -100,12 +102,12 @@ export default function Contacto() {
               <form className="space-y-10" onSubmit={handleSubmit}>
                 <div className="space-y-10">
                   <div className="flex flex-col space-y-2">
-                    <label className="text-sm text-secondary-40 font-medium" htmlFor="name">Nombre Completo</label>
+                    <label className="text-sm text-secondary-40 font-medium" htmlFor="name">{t("contacto.nombreCompleto")}</label>
                     <input
                       className="border-b border-neutral-90 bg-transparent py-2 text-base focus:outline-none focus:border-primary transition-colors"
                       id="name"
                       name="name"
-                      placeholder="Tu nombre"
+                      placeholder={t("contacto.tuNombre")}
                       required
                       type="text"
                       value={formData.name}
@@ -113,7 +115,7 @@ export default function Contacto() {
                     />
                   </div>
                   <div className="flex flex-col space-y-2">
-                    <label className="text-sm text-secondary-40 font-medium" htmlFor="email">Correo Electrónico</label>
+                    <label className="text-sm text-secondary-40 font-medium" htmlFor="email">{t("contacto.correoElectronico")}</label>
                     <input
                       className="border-b border-neutral-90 bg-transparent py-2 text-base focus:outline-none focus:border-primary transition-colors"
                       id="email"
@@ -126,12 +128,12 @@ export default function Contacto() {
                     />
                   </div>
                   <div className="flex flex-col space-y-2">
-                    <label className="text-sm text-secondary-40 font-medium" htmlFor="message">Mensaje</label>
+                    <label className="text-sm text-secondary-40 font-medium" htmlFor="message">{t("contacto.mensaje")}</label>
                     <textarea
                       className="border-b border-neutral-90 bg-transparent py-2 text-base focus:outline-none focus:border-primary transition-colors resize-none"
                       id="message"
                       name="message"
-                      placeholder="¿En qué puedo ayudarte?"
+                      placeholder={t("contacto.placeholderMensaje")}
                       required
                       rows={5}
                       value={formData.message}
@@ -145,7 +147,7 @@ export default function Contacto() {
                     type="submit"
                     disabled={sending}
                   >
-                    {sending ? "Enviando..." : "Enviar Mensaje"}
+                    {sending ? t("contacto.enviando") : t("contacto.enviarMensaje")}
                     <SendOutlined />
                   </button>
                 </div>
@@ -155,15 +157,15 @@ export default function Contacto() {
                 <div className="w-16 h-16 bg-primary/5 rounded-full flex items-center justify-center mb-6">
                   <CheckCircleOutlined className="text-primary text-4xl" />
                 </div>
-                <h3 className="text-xl font-semibold text-primary mb-4">¡Mensaje Enviado!</h3>
+                <h3 className="text-xl font-semibold text-primary mb-4">{t("contacto.mensajeEnviado")}</h3>
                 <p className="text-base text-secondary-40 max-w-sm">
-                  Gracias por contactar. Te responderé lo antes posible, normalmente en menos de 24 horas.
+                  {t("contacto.graciasContactar")}
                 </p>
                 <button
                   className="mt-8 text-primary text-sm font-medium border-b border-primary pb-1 hover:opacity-70 transition-opacity"
                   onClick={resetForm}
                 >
-                  Enviar otro mensaje
+                  {t("contacto.enviarOtro")}
                 </button>
               </div>
             )}

@@ -3,21 +3,27 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { useI18n } from "@/lib/i18n/context";
 
 export default function Navbar() {
     const pathname = usePathname();
     const [open, setOpen] = useState(false);
+    const { locale, setLocale, t } = useI18n();
 
     const items = [
-        { name: "Sobre Mi", href: "/" },
-        { name: "Proyectos", href: "/proyectos" },
-        { name: "Tecnologias", href: "/tecnologias" },
-        { name: "Hobbies", href: "/hobbies" },
-        { name: "Contacto", href: "/contacto" },
+        { name: t("nav.sobreMi"), href: "/" },
+        { name: t("nav.proyectos"), href: "/proyectos" },
+        { name: t("nav.tecnologias"), href: "/tecnologias" },
+        { name: t("nav.hobbies"), href: "/hobbies" },
+        { name: t("nav.contacto"), href: "/contacto" },
     ];
 
+    const toggleLocale = () => {
+        setLocale(locale === "es" ? "en" : "es");
+    };
+
     return (
-        <nav className="w-full border-b border-gray-200 bg-white py-2 z-50 top-0 flex flex-col md:flex-row justify-center items-center px-8 xl:px-0 mb-8 relative">
+        <nav className="w-full border-b border-gray-200 bg-white py-2 z-50 sticky top-0 flex flex-col md:flex-row justify-center items-center px-8 xl:px-0 mb-8">
             
             {/* Top bar */}
             <div className="flex justify-between items-center w-full md:w-268">
@@ -54,10 +60,16 @@ export default function Navbar() {
                     ))}
                 </ul>
 
-                {/* Resume desktop */}
-                <div className="hidden md:block">
+                {/* Desktop actions */}
+                <div className="hidden md:flex items-center gap-3">
+                    <button
+                        onClick={toggleLocale}
+                        className="border px-3 py-2 text-sm font-medium hover:bg-primary hover:text-white active:bg-primary-70 active:text-white transition-all duration-300"
+                    >
+                        {locale === "es" ? "EN" : "ES"}
+                    </button>
                     <button className="border px-6 py-2 hover:bg-primary hover:text-white active:bg-primary-70 active:text-white transition-all duration-300">
-                        Resume
+                        {t("nav.resume")}
                     </button>
                 </div>
             </div>
@@ -80,9 +92,17 @@ export default function Navbar() {
                         </Link>
                     ))}
 
-                    <button className="mt-2 border px-4 py-3 w-full text-left active:bg-primary active:text-white transition-all duration-100">
-                        Resume
-                    </button>
+                    <div className="flex w-full gap-2 mt-2">
+                        <button
+                            onClick={toggleLocale}
+                            className="border px-4 py-3 flex-1 text-left active:bg-primary active:text-white transition-all duration-100"
+                        >
+                            {locale === "es" ? "English" : "Español"}
+                        </button>
+                        <button className="border px-4 py-3 flex-1 text-left active:bg-primary active:text-white transition-all duration-100">
+                            {t("nav.resume")}
+                        </button>
+                    </div>
                 </div>
             )}
         </nav>

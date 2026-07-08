@@ -6,7 +6,11 @@ import { TerminalOutlined } from "@mui/icons-material";
 import { ArrowForward } from "@mui/icons-material";
 import Link from "next/link";
 import BreakP from "@/components/breakpoints/breakpoint";
+import { useI18n } from "@/lib/i18n/context";
+
 export default function Home() {
+  const { t } = useI18n();
+
   return (
     <div className="w-full md:flex md:justify-center md:items-start animate-fade-in-up">
       {/* Desktop */}
@@ -21,13 +25,13 @@ export default function Home() {
             />
           </div>
           <div className="py-4 flex flex-col justify-center">
-            <h3 className="text-primary font-semibold mb-4 text-xl lg:text-2xl xl:text-3xl">DESARROLLADOR FULL-STACK <BreakP /> </h3>
-            <p className="mb-6 text-base text-neutral-20 leading-relaxed lg:hidden">Soy David, desarrollador Full-Stack con poco más de dos años de experiencia en Laravel, Angular y tecnologías cloud. Me apasiona transformar ideas en soluciones de software escalables y de alta calidad.</p>
-            <p className="mb-4 text-lg text-neutral-20 leading-relaxed hidden lg:block">Hola, soy David, desarrollador Full-Stack con poco más de dos años de experiencia en el desarrollo de aplicaciones con Laravel, Angular y tecnologías de despliegue en la nube. Me apasiona transformar ideas en soluciones de software y participar en todo el ciclo de desarrollo, desde la planeación hasta la puesta en producción.</p>
-            <p className="mb-6 text-lg text-neutral-20 leading-relaxed hidden lg:block">He colaborado en proyectos para los sectores público y privado, fortaleciendo mis habilidades técnicas y mi enfoque en la creación de aplicaciones escalables, eficientes y de alta calidad. Siempre busco aprender nuevas tecnologías y asumir desafíos que impulsen mi crecimiento profesional.</p>
+            <h3 className="text-primary font-semibold mb-4 text-xl lg:text-2xl xl:text-3xl">{t("home.rol")}</h3>
+            <p className="mb-6 text-base text-neutral-20 leading-relaxed lg:hidden">{t("home.introMd")}</p>
+            <p className="mb-4 text-lg text-neutral-20 leading-relaxed hidden lg:block">{t("home.introDesktop")}</p>
+            <p className="mb-6 text-lg text-neutral-20 leading-relaxed hidden lg:block">{t("home.introDesktop2")}</p>
             <div className="w-full flex justify-start items-center">
               <Link className="bg-primary text-white active:bg-primary-70 hover:bg-primary-80 group/link px-10 py-3 lg:text-base lg:px-12 lg:py-3 rounded-none flex justify-center items-center transition-all duration-300" href="/proyectos">
-                Ver Proyectos <span className="transition-all duration-300 group-hover/link:translate-x-1 ps-2"><ArrowForward className="text-white" fontSize="small" /></span>
+                {t("home.verProyectos")} <span className="transition-all duration-300 group-hover/link:translate-x-1 ps-2"><ArrowForward className="text-white" fontSize="small" /></span>
               </Link>
             </div>
           </div>
@@ -48,7 +52,7 @@ export default function Home() {
         {/* seccion sobre mi */}
         <div className="w-full px-6 my-6 sm:px-12 md:px-16">
           <div className="w-full text-center py-2">
-            <h3 className="text-center text-xl sm:text-2xl md:text-3xl font-bold text-primary">Hola soy David, soy un Desarrollador Full-Stack apasionado por el desarrollo.</h3>
+            <h3 className="text-center text-xl sm:text-2xl md:text-3xl font-bold text-primary">{t("home.introMobile")}</h3>
           </div>
         </div>
 
@@ -56,10 +60,10 @@ export default function Home() {
         <div className="p-6 m-4 bg-neutral-95 rounded-2xl sm:mx-12 sm:my-6 sm:p-8">
           <div className="flex w-full justify-start items-center mb-3">
             <AutoStoriesOutlined className="text-primary me-2" />
-            <h3 className="font-bold text-primary text-base sm:text-lg">Mi Historia</h3>
+            <h3 className="font-bold text-primary text-base sm:text-lg">{t("home.miHistoria")}</h3>
           </div>
           <p className="text-neutral-20 text-start text-sm sm:text-base md:text-lg">
-            Con poco más de 2 años de experiencia, me he especializado en construir arquitecturas escalables. Creo que el código no solo debe funcionar, sino que debe ser una obra de ingeniería legible y mantenible para el futuro.
+            {t("home.historia")}
           </p>
         </div>
 
@@ -67,7 +71,7 @@ export default function Home() {
         <div className="p-6 m-4 h-fit bg-neutral-95 rounded-2xl items-center justify-center flex flex-col sm:mx-12 sm:my-6 sm:p-8">
           <div className="flex w-full justify-start items-center mb-3">
             <TerminalOutlined className="me-2 text-primary" />
-            <h3 className="font-bold text-primary text-base sm:text-lg">Tecnologías</h3>
+            <h3 className="font-bold text-primary text-base sm:text-lg">{t("home.tecnologias")}</h3>
           </div>
           <div className="flex flex-wrap gap-2 justify-center">
             <span className="text-secondary-40 font-semibold border-neutral-90 rounded-full px-3 py-1 text-xs sm:text-sm bg-neutral-90">TypeScript</span>
@@ -87,11 +91,11 @@ export default function Home() {
         {/* seccion proyectos */}
         <div className="p-6 m-4 bg-primary rounded-2xl sm:mx-12 sm:my-6 sm:p-8">
           <h3 className="text-white text-lg sm:text-xl font-bold">
-            ¿Listo para ver mi trabajo en acción?
+            {t("home.listoParaVer")}
           </h3>
           <div className="my-3">
             <Link className="text-white active:bg-primary-70 hover:bg-primary-80 rounded-lg px-6 py-2 text-sm sm:text-base transition-all duration-100" href="/proyectos">
-              VER PROYECTOS <ArrowForward className="text-white" />
+              {t("home.verProyectosBtn")} <ArrowForward className="text-white" />
             </Link>
           </div>
         </div>

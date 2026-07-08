@@ -7,6 +7,8 @@ import {
 } from "@mui/icons-material"
 import GitHubIcon from '@mui/icons-material/GitHub';
 import BreakP from "@/components/breakpoints/breakpoint";
+import { useI18n } from "@/lib/i18n/context";
+
 function TechCard({ icon, label }: { icon: React.ReactNode; label: string }) {
     return (
         <div className="tech-card bg-white border border-neutral-90 p-4 rounded-lg flex flex-col items-center gap-2 group">
@@ -42,14 +44,16 @@ function ToolCard({ icon, label, progress }: { icon: React.ReactNode; label: str
 }
 
 export default function Tecnologias() {
+    const { t } = useI18n();
+
     return (
         <div className="min-h-screen px-6 py-16 max-w-6xl mx-auto overflow-hidden">
             <header className="mb-16 text-center max-w-2xl mx-auto animate-fade-in-up">
                 <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-primary mb-4">
-                    Stack Tecnológico
+                    {t("tecnologias.titulo")}
                 </h1>
                 <p className="text-lg text-secondary-30">
-                    Una selección curada de herramientas y lenguajes que utilizo para transformar ideas complejas en realidades digitales elegantes y escalables.
+                    {t("tecnologias.subtitulo")}
                 </p>
                 <BreakP/>
             </header>
@@ -59,10 +63,10 @@ export default function Tecnologias() {
                     <div className="flex flex-col items-center justify-center sm:flex-row sm:justify-between">
                         <h2 className="text-2xl lg:text-3xl font-semibold text-primary flex items-center flex-col justify-center text-center sm:flex-row sm:justify-normal gap-2">
                             <Devices className="text-primary" />
-                            Frontend Development
+                            {t("tecnologias.frontend")}
                         </h2>
                         <span className="text-xs font-medium px-4 py-1 bg-primary/5 text-primary rounded-md uppercase tracking-wider">
-                            Intermedio
+                            {t("tecnologias.intermedio")}
                         </span>
                     </div>
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
@@ -72,13 +76,13 @@ export default function Tecnologias() {
                         <TechCard icon={<Css />} label="Tailwind CSS" />
                     </div>
                     <p className="text-base text-secondary-30 mt-2">
-                        Especializado en crear interfaces interactivas y reactivas con énfasis en la accesibilidad y el rendimiento web.
+                        {t("tecnologias.frontendDesc")}
                     </p>
                 </div>
 
                 <div className="md:col-span-4 bg-primary text-white rounded-md p-6 flex flex-col justify-between relative overflow-hidden group">
                     <div className="relative z-10">
-                        <h2 className="text-xl font-semibold mb-4">Explorando ahora</h2>
+                        <h2 className="text-xl font-semibold mb-4">{t("tecnologias.explorandoAhora")}</h2>
                         <div className="flex flex-wrap gap-2">
                             <span className="px-4 py-1 bg-white/10 rounded-full text-xs font-medium">Next.JS</span>
                             <span className="px-4 py-1 bg-white/10 rounded-full text-xs font-medium">SpringBoot</span>
@@ -87,11 +91,11 @@ export default function Tecnologias() {
                     </div>
                     <div className="mt-8 relative z-10">
                         <p className="text-base opacity-80 mb-6">
-                            La tecnología nunca se detiene. Actualmente profundizando en aprender nuevas tecnologias del desarrollo web.
+                            {t("tecnologias.explorandoDesc")}
                         </p>
                         <div className="flex items-center gap-2 text-white text-sm font-medium">
                             <TrendingUp />
-                            Crecimiento Constante
+                            {t("tecnologias.crecimiento")}
                         </div>
                     </div>
                     <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-white/5 rounded-md blur-3xl group-hover:scale-150 transition-transform duration-700"></div>
@@ -100,7 +104,7 @@ export default function Tecnologias() {
                 <div className="md:col-span-6 bg-neutral-95 border border-neutral-90 rounded-md p-6 flex flex-col gap-6">
                     <h2 className="text-2xl md:text-3xl font-semibold text-primary flex items-center gap-2">
                         <Storage className="text-primary" />
-                        Backend & Infra
+                        {t("tecnologias.backend")}
                     </h2>
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                         <TechCardHorizontal icon={<Terminal />} label="Laravel" />
@@ -115,25 +119,22 @@ export default function Tecnologias() {
                 <div className="md:col-span-6 bg-neutral-95 border border-neutral-90 rounded-md p-6 flex flex-col gap-6">
                     <h2 className="text-2xl md:text-3xl font-semibold text-primary flex items-center gap-2">
                         <Architecture className="text-primary" />
-                        Herramientas y Diseño
+                        {t("tecnologias.herramientas")}
                     </h2>
                     <div className="space-y-4">
                         <ToolCard icon={<Draw />} label="Figma & UI/UX Design" progress="w-2/5" />
-                        <ToolCard icon={<GitHubIcon />} label="Git Workflow" progress="w-[45%]" />
+                        <ToolCard icon={<GitHubIcon />} label="Git - GitHub" progress="w-[45%]" />
                     </div>
-                    {/* <p className="text-xs text-secondary-30 italic">
-                        &quot;El diseño no es solo lo que parece, es cómo funciona.&quot; — Steve Jobs
-                    </p> */}
                 </div>
             </div>
 
             <div className="mt-16 pt-8 border-t border-neutral-90 flex flex-col md:flex-row items-center justify-between gap-6 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
                 <div>
-                    <h3 className="text-xl font-semibold text-primary">¿Tienes un proyecto en mente?</h3>
-                    <p className="text-base text-secondary-30">Hablemos sobre cómo estas herramientas pueden ayudar a tu visión.</p>
+                    <h3 className="text-xl font-semibold text-primary">{t("tecnologias.proyectoEnMente")}</h3>
+                    <p className="text-base text-secondary-30">{t("tecnologias.hablemosDesc")}</p>
                 </div>
                 <button className="bg-primary text-white px-12 py-4 rounded-md text-sm font-medium transition-all hover:bg-primary/90 active:scale-95 shadow-sm">
-                    Iniciar conversación
+                    {t("tecnologias.iniciarConversacion")}
                 </button>
             </div>
         </div>

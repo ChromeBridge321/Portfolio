@@ -8,7 +8,7 @@ export const proyectos = [
     {
         id: 1,
         nombre: "POELMC",
-        descripcion: "Plataforma para la consulta de uso de suelo dentro del municipio de Centro del estado de Tabasco, México.",
+        translationKey: "proyectos.data.poelmc",
         tecnologias: ["Angular", "Tailwind"],
         imageUrl: poelmc,
         url: "https://poelm.villahermosa.gob.mx/"
@@ -16,7 +16,7 @@ export const proyectos = [
     {
         id: 2,
         nombre: "CALCULADORA ESTADISTICA",
-        descripcion: "Proyecto escolar con distintas calculadoras estadisticas desde Cuartiles hasta graficas de Pareto",
+        translationKey: "proyectos.data.calculadora",
         tecnologias: ["Laravel", "HTML", "CSS"],
         imageUrl: calculadoraImg,
         url: "https://calculadoras-de-estadistica-plataforma.onrender.com/"
@@ -24,7 +24,7 @@ export const proyectos = [
     {
         id: 3,
         nombre: "TOPOLOGIX",
-        descripcion: "Proyecto escolar que consiste en un Port Digital del juego de mesa TOPOLOGIX de Djeco",
+        translationKey: "proyectos.data.topologix",
         tecnologias: ["JavaScript", "HTML", "CSS"],
         imageUrl: topologix,
         url: "https://topologix.onrender.com/welcome.html"
@@ -32,7 +32,7 @@ export const proyectos = [
     {
         id: 4,
         nombre: "REPORTEADOR MTC",
-        descripcion: "Plataforma para la consulta y descarga de reporte operativos de Motocompresores de pozos petroleros para la toma de deciciones estrategicas",
+        translationKey: "proyectos.data.reporteador",
         tecnologias: ["Angular", "Laravel","Tailwind"],
         imageUrl: reporteador,
         url: ""
@@ -40,7 +40,7 @@ export const proyectos = [
     {
         id: 5,
         nombre: "GARAGEMEET",
-        descripcion: "Plataforma para la gestion de talleres mecanicos con integracion de Stripe para pagos online, suscripciones y envio de correos",
+        translationKey: "proyectos.data.garagemeet",
         tecnologias: ["Angular", "Laravel", "Tailwind"],
         imageUrl: garagemeet,
         url: ""
@@ -48,7 +48,7 @@ export const proyectos = [
     {
         id: 6,
         nombre: "INFAADEP RRHH",
-        descripcion: "Plataforma para la administracion de recursos humanos, adminisracion de personal, vacantes, bolsa de trabajo, entrevistas, entre otras funciones",
+        translationKey: "proyectos.data.infaadep",
         tecnologias: ["Angular", "Tailwind"],
         imageUrl: "/",
         url: ""

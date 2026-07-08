@@ -1,0 +1,93 @@
+{
+    "nav": {
+        "sobreMi": "About Me",
+        "proyectos": "Projects",
+        "tecnologias": "Technologies",
+        "hobbies": "Hobbies",
+        "contacto": "Contact",
+        "resume": "Resume"
+    },
+    "home": {
+        "rol": "FULL-STACK DEVELOPER",
+        "introMobile": "Hi, I'm David, a Full-Stack Developer with a focus on frontend development.",
+        "introMd": "Hi, I'm David, a Full-Stack Developer focused on frontend. I'm passionate about creating intuitive, accessible, and high-performance interfaces.",
+        "introDesktop": "Hi, I'm David, a Full-Stack Developer focused on frontend development with over two years of experience building modern web applications with Angular and Laravel. I'm passionate about creating intuitive, accessible, and high-performance interfaces.",
+        "introDesktop2": "I've collaborated on projects for both public and private sectors, participating in the entire development cycle. I'm always looking to learn new technologies and take on challenges that drive my professional growth.",
+        "verProyectos": "View Projects",
+        "miHistoria": "My Story",
+        "historia": "With over 2 years of experience, I've specialized in building scalable architectures. I believe code shouldn't just work — it should be a piece of engineering that's readable and maintainable for the future.",
+        "tecnologias": "Technologies",
+        "listoParaVer": "Ready to see my work in action?",
+        "verProyectosBtn": "VIEW PROJECTS"
+    },
+    "proyectos": {
+        "titulo": "Projects",
+        "subtitulo": "A curated selection of work that demonstrates my technical approach and attention to detail. Each piece reflects a commitment to excellence in code.",
+        "enDesarrollo": "In Development",
+        "verProyecto": "View Project",
+        "data": {
+            "poelmc": "Platform for land use consultation within the Centro municipality of Tabasco state, Mexico.",
+            "calculadora": "School project with various statistical calculators from Quartiles to Pareto charts",
+            "topologix": "School project consisting of a Digital Port for the TOPOLOGIX board game by Djeco",
+            "reporteador": "Platform for querying and downloading operational reports of Motocompressors for oil wells for strategic decision making",
+            "garagemeet": "Platform for managing mechanic workshops with Stripe integration for online payments, subscriptions, and email sending",
+            "infaadep": "Platform for human resources administration, personnel management, job openings, job board, interviews, among other functions"
+        }
+    },
+    "tecnologias": {
+        "titulo": "Tech Stack",
+        "subtitulo": "A curated selection of tools and languages I use to transform complex ideas into elegant and scalable digital realities.",
+        "frontend": "Frontend Development",
+        "intermedio": "Intermediate",
+        "frontendDesc": "Specialized in creating interactive and reactive interfaces with emphasis on accessibility and web performance.",
+        "explorandoAhora": "Exploring now",
+        "explorandoDesc": "Technology never stops. Currently diving deep into learning new web development technologies.",
+        "crecimiento": "Constant Growth",
+        "backend": "Backend & Infra",
+        "herramientas": "Tools & Design",
+        "proyectoEnMente": "Have a project in mind?",
+        "hablemosDesc": "Let's talk about how these tools can help bring your vision to life.",
+        "iniciarConversacion": "Start a conversation"
+    },
+    "hobbies": {
+        "titulo": "Beyond the Code",
+        "subtitulo": "Balance is the key to creativity. These are the passions that keep my mind curious and my perspectives fresh.",
+        "fotografia": "Photography",
+        "capturando": "Capturing Perspectives",
+        "fotografiaDesc": "I find beauty in urban geometry and minimalism. My camera is the tool I use to document how light interacts with modern architecture.",
+        "composicion": "Composition",
+        "luzNatural": "Natural Light",
+        "gaming": "Gaming",
+        "jugarParaGanar": "Play to Win",
+        "gamingDesc": "I'm passionate about Shooters and strategy games, where gameplay and strategy meet.",
+        "ritual": "Ritual",
+        "culturaMusica": "Music Culture",
+        "musicaDesc": "There's always a new artist, genre, or song to discover. The beauty of life is being able to listen to all kinds of music.",
+        "seriesPeliculas": "Series & Movies",
+        "historiasInspiran": "Stories that Inspire",
+        "seriesDesc": "I enjoy series and movies, always looking for something new to watch and enjoy alone or with company. Fan of the Transformers saga by Michael Bay.",
+        "citaFinal": "Technology is my craft, but curiosity is my engine. I believe the best solutions are born from a mind that knows when to disconnect in order to reconnect better."
+    },
+    "contacto": {
+        "titulo": "Let's Talk.",
+        "subtitulo": "Have a project in mind or just want to say hello? I'm always open to discussing new opportunities and technical collaborations.",
+        "infoContacto": "Contact Information",
+        "ubicacion": "Location",
+        "estadoMexico": "State of Mexico",
+        "perfilesSociales": "Social Profiles",
+        "disponibleRemoto": "Available for remote projects",
+        "nombreCompleto": "Full Name",
+        "tuNombre": "Your name",
+        "correoElectronico": "Email",
+        "mensaje": "Message",
+        "placeholderMensaje": "How can I help you?",
+        "enviarMensaje": "Send Message",
+        "enviando": "Sending...",
+        "mensajeEnviado": "Message Sent!",
+        "graciasContactar": "Thanks for reaching out. I'll get back to you as soon as possible, usually within 24 hours.",
+        "enviarOtro": "Send another message"
+    },
+    "footer": {
+        "derechos": "© 2024 Developer Portfolio. All rights reserved."
+    }
+}

@@ -12,6 +12,7 @@ import img8 from "@/assets/hobbies/img8.avif"
 import img9 from "@/assets/hobbies/img9.avif"
 import gaming from "@/assets/hobbies/gaming.avif"
 import musica from "@/assets/hobbies/musica.avif"
+import { useI18n } from "@/lib/i18n/context"
 
 const carouselImages = [
     { src: img1, alt: "Fotografía 1" },
@@ -78,14 +79,16 @@ function PhotoCarousel() {
 }
 
 export default function Hobbies() {
+    const { t } = useI18n();
+
     return (
         <div className="min-h-screen px-6 py-16 max-w-6xl mx-auto overflow-hidden">
             <header className="mb-16 text-center animate-fade-in-up">
                 <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-primary mb-4">
-                    Fuera del Código
+                    {t("hobbies.titulo")}
                 </h1>
                 <p className="text-lg text-secondary-30 max-w-2xl mx-auto">
-                    El equilibrio es la clave de la creatividad. Estas son las pasiones que mantienen mi mente curiosa y mis perspectivas frescas.
+                    {t("hobbies.subtitulo")}
                 </p>
             </header>
 
@@ -96,15 +99,15 @@ export default function Hobbies() {
                         <div className="p-6">
                             <div className="flex items-center gap-2 mb-4">
                                 <PhotoCamera className="text-primary" />
-                                <span className="text-sm font-medium text-secondary-40 uppercase tracking-widest">Fotografía</span>
+                                <span className="text-sm font-medium text-secondary-40 uppercase tracking-widest">{t("hobbies.fotografia")}</span>
                             </div>
-                            <h3 className="text-2xl md:text-3xl font-semibold text-primary mb-4">Capturando Perspectivas</h3>
+                            <h3 className="text-2xl md:text-3xl font-semibold text-primary mb-4">{t("hobbies.capturando")}</h3>
                             <p className="text-base text-secondary-30 mb-4 leading-relaxed">
-                                Encuentro belleza en la geometría urbana y el minimalismo. Mi cámara es la herramienta que utilizo para documentar cómo la luz interactúa con la arquitectura moderna.
+                                {t("hobbies.fotografiaDesc")}
                             </p>
                             <div className="flex gap-2">
-                                <span className="px-3 py-1 bg-neutral-95 text-secondary-30 rounded-full text-xs font-medium">Composición</span>
-                                <span className="px-3 py-1 bg-neutral-95 text-secondary-30 rounded-full text-xs font-medium">Luz Natural</span>
+                                <span className="px-3 py-1 bg-neutral-95 text-secondary-30 rounded-full text-xs font-medium">{t("hobbies.composicion")}</span>
+                                <span className="px-3 py-1 bg-neutral-95 text-secondary-30 rounded-full text-xs font-medium">{t("hobbies.luzNatural")}</span>
                             </div>
                         </div>
                     </div>
@@ -114,11 +117,11 @@ export default function Hobbies() {
                     <div className="tonal-card flex-1 rounded-xl p-6 flex flex-col justify-center items-center text-center">
                         <div className="flex items-center gap-2 mb-4">
                             <SportsEsports className="text-primary" />
-                            <span className="text-sm font-medium text-secondary-40 uppercase tracking-widest">Gaming</span>
+                            <span className="text-sm font-medium text-secondary-40 uppercase tracking-widest">{t("hobbies.gaming")}</span>
                         </div>
-                        <h3 className="text-xl font-semibold text-primary mb-2">Jugar para Ganar</h3>
+                        <h3 className="text-xl font-semibold text-primary mb-2">{t("hobbies.jugarParaGanar")}</h3>
                         <p className="text-base text-secondary-30">
-                            Me apasionan los Shooter y los juegos de estrategia, donde la jugabilidad y la estrategia se encuentran.
+                            {t("hobbies.gamingDesc")}
                         </p>
                     </div>
                     <div className="relative rounded-xl overflow-hidden h-75 group">
@@ -137,11 +140,11 @@ export default function Hobbies() {
                         <div className="p-6 flex-1 flex flex-col justify-center">
                             <div className="flex items-center gap-2 mb-4">
                                 <HeadsetIcon className="text-primary" />
-                                <span className="text-sm font-medium text-secondary-40 uppercase tracking-widest">Ritual</span>
+                                <span className="text-sm font-medium text-secondary-40 uppercase tracking-widest">{t("hobbies.ritual")}</span>
                             </div>
-                            <h3 className="text-xl font-semibold text-primary mb-2">Cultura de la música</h3>
+                            <h3 className="text-xl font-semibold text-primary mb-2">{t("hobbies.culturaMusica")}</h3>
                             <p className="text-base text-secondary-30">
-                                Siempre hay un nuevo artista, género o canción por descubrir. Lo bello de la vida es poder escuchar todo tipo de música.
+                                {t("hobbies.musicaDesc")}
                             </p>
                         </div>
                         <div className="w-full md:w-1/2 h-64 md:h-auto overflow-hidden">
@@ -161,11 +164,11 @@ export default function Hobbies() {
                     <div className="tonal-card h-full rounded-xl p-6 text-center flex justify-center items-center flex-col">
                         <div className="flex items-center justify-center gap-2 mb-4">
                             <Movie className="text-primary" />
-                            <span className="text-sm font-medium text-secondary-40 uppercase tracking-widest">Series & Películas</span>
+                            <span className="text-sm font-medium text-secondary-40 uppercase tracking-widest">{t("hobbies.seriesPeliculas")}</span>
                         </div>
-                        <h3 className="text-xl font-semibold text-primary mb-2">Historias que Inspiran</h3>
+                        <h3 className="text-xl font-semibold text-primary mb-2">{t("hobbies.historiasInspiran")}</h3>
                         <p className="text-base text-secondary-30">
-                            Disfruto de series y películas siempre en busca de algo nuevo que ver y disfrutar solo o acompañado. Fan de la saga de Transformers de Michael Bay.
+                            {t("hobbies.seriesDesc")}
                         </p>
                     </div>
                 </div>
@@ -176,7 +179,7 @@ export default function Hobbies() {
             </div>
 
             <section className="text-center max-w-xl mx-auto italic text-secondary-40 text-lg animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
-                &quot;La tecnología es mi oficio, pero la curiosidad es mi motor. Creo que las mejores soluciones nacen de una mente que sabe cuándo desconectarse para volver a conectar mejor.&quot;
+                &quot;{t("hobbies.citaFinal")}&quot;
             </section>
         </div>
     )
