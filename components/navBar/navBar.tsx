@@ -68,9 +68,16 @@ export default function Navbar() {
                     >
                         {locale === "es" ? "EN" : "ES"}
                     </button>
-                    <button className="border px-6 py-2 hover:bg-primary hover:text-white active:bg-primary-70 active:text-white transition-all duration-300">
+                    <a
+                        href={locale === "es"
+                            ? "https://github.com/ChromeBridge321/Portfolio/releases/download/CV/DavidCV.pdf"
+                            : "https://github.com/ChromeBridge321/Portfolio/releases/download/Resume/DavidResume.pdf"
+                        }
+                        download
+                        className="border px-6 py-2 hover:bg-primary hover:text-white active:bg-primary-70 active:text-white transition-all duration-300 text-center"
+                    >
                         {t("nav.resume")}
-                    </button>
+                    </a>
                 </div>
             </div>
 
@@ -99,9 +106,16 @@ export default function Navbar() {
                         >
                             {locale === "es" ? "English" : "Español"}
                         </button>
-                        <button className="border px-4 py-3 flex-1 text-left active:bg-primary active:text-white transition-all duration-100">
+                        <a
+                            href={locale === "es"
+                                ? "https://github.com/ChromeBridge321/Portfolio/releases/download/CV/DavidCV.pdf"
+                                : "https://github.com/ChromeBridge321/Portfolio/releases/download/Resume/DavidResume.pdf"
+                            }
+                            download
+                            className="border px-4 py-3 flex-1 text-left active:bg-primary active:text-white transition-all duration-100"
+                        >
                             {t("nav.resume")}
-                        </button>
+                        </a>
                     </div>
                 </div>
             )}
