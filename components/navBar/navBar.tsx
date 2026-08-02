@@ -2,21 +2,57 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+
+const sectionIds = ["inicio", "proyectos", "tecnologias", "hobbies", "contacto"] as const;
+
+type SectionId = (typeof sectionIds)[number];
 
 export default function Navbar() {
     const pathname = usePathname();
     const [open, setOpen] = useState(false);
+    const [activeSection, setActiveSection] = useState<SectionId>("inicio");
     const { locale, setLocale, t } = useI18n();
 
     const items = [
-        { name: t("nav.sobreMi"), href: "/" },
-        { name: t("nav.proyectos"), href: "/proyectos" },
-        { name: t("nav.tecnologias"), href: "/tecnologias" },
-        { name: t("nav.hobbies"), href: "/hobbies" },
-        { name: t("nav.contacto"), href: "/contacto" },
+        { id: "inicio" as const, name: t("nav.sobreMi"), href: "/#inicio" },
+        { id: "proyectos" as const, name: t("nav.proyectos"), href: "/#proyectos" },
+        { id: "tecnologias" as const, name: t("nav.tecnologias"), href: "/#tecnologias" },
+        { id: "hobbies" as const, name: t("nav.hobbies"), href: "/#hobbies" },
+        { id: "contacto" as const, name: t("nav.contacto"), href: "/#contacto" },
     ];
+    const routeSection = pathname.slice(1) as SectionId;
+    const currentSection = pathname === "/" || !sectionIds.includes(routeSection)
+        ? activeSection
+        : routeSection;
+
+    useEffect(() => {
+        if (pathname !== "/") {
+            return;
+        }
+
+        const sections = sectionIds
+            .map((id) => document.getElementById(id))
+            .filter((section): section is HTMLElement => section !== null);
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const visibleSection = entries
+                    .filter((entry) => entry.isIntersecting)
+                    .sort((a, b) => Math.abs(a.boundingClientRect.top) - Math.abs(b.boundingClientRect.top))[0];
+
+                if (visibleSection) {
+                    setActiveSection(visibleSection.target.id as SectionId);
+                }
+            },
+            { rootMargin: "-35% 0px -55% 0px", threshold: 0 }
+        );
+
+        sections.forEach((section) => observer.observe(section));
+
+        return () => observer.disconnect();
+    }, [pathname]);
 
     const toggleLocale = () => {
         setLocale(locale === "es" ? "en" : "es");
@@ -42,22 +78,26 @@ export default function Navbar() {
 
                 {/* Desktop menu */}
                 <ul className="hidden md:flex justify-center items-center">
-                    {items.map((item) => (
+                    {items.map((item) => {
+                        const isActive = currentSection === item.id;
+
+                        return (
                         <li
                             key={item.name}
                             className={`
                                 py-2 mx-4 lg:mx-6 cursor-pointer transition-all duration-200 text-center text-primary
-                                ${pathname === item.href
+                                ${isActive
                                     ? "border-b-2 border-primary font-bold"
                                     : "border-b-2 border-transparent hover:border-primary hover:font-bold active:border-primary active:font-bold"
                                 }
                             `}
                         >
-                            <Link href={item.href}>
+                            <Link href={item.href} aria-current={isActive ? "location" : undefined}>
                                 {item.name}
                             </Link>
                         </li>
-                    ))}
+                        );
+                    })}
                 </ul>
 
                 {/* Desktop actions */}
@@ -84,20 +124,23 @@ export default function Navbar() {
             {/* Mobile menu */}
             {open && (
                 <div className="md:hidden absolute top-full left-0 w-full max-h-[80vh] bg-white border-b border-gray-200 shadow-lg flex flex-col items-start gap-1 py-2 px-8 z-50 overflow-y-auto">
-                    {items.map((item) => (
+                    {items.map((item) => {
+                        const isActive = currentSection === item.id;
+
+                        return (
                         <Link
                             key={item.name}
                             href={item.href}
                             onClick={() => setOpen(false)}
                             className={`w-full py-3 border-b border-gray-200 text-left ${
-                                pathname === item.href
-                                    ? "font-bold"
-                                    : ""
+                                isActive ? "font-bold text-primary" : "text-secondary-40"
                             }`}
+                            aria-current={isActive ? "location" : undefined}
                         >
                             {item.name}
                         </Link>
-                    ))}
+                        );
+                    })}
 
                     <div className="flex w-full gap-2 mt-2">
                         <button

@@ -1,8 +1,8 @@
-import calculadoraImg from "@/assets/proyectos/calculadora.avif"
-import garagemeet from "@/assets/proyectos/garagemeet.avif"
-import poelmc from "@/assets/proyectos/poelmc.avif"
-import topologix from "@/assets/proyectos/topologix.avif"
-import reporteador from "@/assets/proyectos/reporteador.avif"
+import calculadoraImg from "@/assets/proyectos/calculadora.webp"
+import garagemeet from "@/assets/proyectos/garagemeet.webp"
+import poelmc from "@/assets/proyectos/poelmc.webp"
+import topologix from "@/assets/proyectos/topologix.webp"
+import reporteador from "@/assets/proyectos/reporteador.webp"
 
 export const proyectos = [
     {

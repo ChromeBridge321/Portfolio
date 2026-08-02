@@ -127,16 +127,6 @@ export default function Tecnologias() {
                     </div>
                 </div>
             </div>
-
-            <div className="mt-16 pt-8 border-t border-neutral-90 flex flex-col md:flex-row items-center justify-between gap-6 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
-                <div>
-                    <h3 className="text-xl font-semibold text-primary">{t("tecnologias.proyectoEnMente")}</h3>
-                    <p className="text-base text-secondary-30">{t("tecnologias.hablemosDesc")}</p>
-                </div>
-                <button className="bg-primary text-white px-12 py-4 rounded-md text-sm font-medium transition-all hover:bg-primary/90 active:scale-95 shadow-sm">
-                    {t("tecnologias.iniciarConversacion")}
-                </button>
-            </div>
         </div>
     )
 }

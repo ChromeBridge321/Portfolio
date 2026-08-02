@@ -9,15 +9,16 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - **Next.js 16.2.9** (App Router), **React 19.2.4**, **TypeScript 5**
 - **Tailwind CSS 4** — no `tailwind.config.*` file; theme tokens defined via `@theme` in `app/globals.css`
 - **MUI 9** (`@mui/material`, `@mui/icons-material`) with Emotion
+- **pnpm 11.9.0** as the package manager
 - No test framework configured. No `test` script in package.json.
 
 ## Commands
 
 ```
-npm run dev      # start dev server (localhost:3000)
-npm run build    # production build
-npm run start    # serve production build
-npm run lint     # eslint (core-web-vitals + typescript presets)
+pnpm dev      # start dev server (localhost:3000)
+pnpm build    # production build
+pnpm start    # serve production build
+pnpm lint     # eslint (core-web-vitals + typescript presets)
 ```
 
 No typecheck script — `tsc --noEmit` if needed.
@@ -86,10 +87,10 @@ you have this skills available in .opencode folder in root project
 
 
 ## Question or request
-Sometimes the user will say "pregunta," "esto es una pregunta" "responde," or similar words to refer to a question. This means the petition is a question, the user asks and you answer. 
+Sometimes the user will say "pregunta," "esto es una pregunta" "responde," "?" or similar words to refer to a question. This means the petition is a question, the user asks and you answer. 
 
-## Before starting
-Prioritize planning over execution. First, plan the route to follow before implementing a user's request. Let the user know the path you will take to carry out the task correctly. Always ask the user if you can proceed with the task once the plan is created. Once the user gives you their explicit approval, you can go ahead with implementation. Once implementing a change, make sure that the project always runs correctly without errors usin `npm run build`. in case of an error, correct it.
+## after starting
+Once implementing a change, make sure that the project always runs correctly without errors using `pnpm build`. In case of an error, correct it.
 
 ## Create commit
 When the user says 'commit,' you should run only git status and git diff in the terminal analize the changes and create a commit with this structure: title and description of the changes. This commit should be text only, dont crate the commit in terminal, the user only need the text to copy and paste. the commit must be in spanish.
