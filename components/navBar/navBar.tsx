@@ -1,5 +1,9 @@
 "use client";
 
+import CloseRounded from "@mui/icons-material/CloseRounded";
+import DownloadRounded from "@mui/icons-material/DownloadRounded";
+import LanguageRounded from "@mui/icons-material/LanguageRounded";
+import MenuRounded from "@mui/icons-material/MenuRounded";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -10,7 +14,7 @@ const sectionIds = ["inicio", "proyectos", "tecnologias", "hobbies", "contacto"]
 type SectionId = (typeof sectionIds)[number];
 
 export default function Navbar() {
-    const pathname = usePathname();
+    const pathname = usePathname() ?? "/";
     const [open, setOpen] = useState(false);
     const [activeSection, setActiveSection] = useState<SectionId>("inicio");
     const { locale, setLocale, t } = useI18n();
@@ -26,6 +30,9 @@ export default function Navbar() {
     const currentSection = pathname === "/" || !sectionIds.includes(routeSection)
         ? activeSection
         : routeSection;
+    const resumeUrl = locale === "es"
+        ? "https://github.com/ChromeBridge321/Portfolio/releases/download/CV/DavidCV.pdf"
+        : "https://github.com/ChromeBridge321/Portfolio/releases/download/Resume/DavidResume.pdf";
 
     useEffect(() => {
         if (pathname !== "/") {
@@ -54,114 +61,157 @@ export default function Navbar() {
         return () => observer.disconnect();
     }, [pathname]);
 
+    useEffect(() => {
+        if (!open) {
+            return;
+        }
+
+        const closeWithEscape = (event: KeyboardEvent) => {
+            if (event.key === "Escape") {
+                setOpen(false);
+            }
+        };
+
+        document.addEventListener("keydown", closeWithEscape);
+
+        return () => document.removeEventListener("keydown", closeWithEscape);
+    }, [open]);
+
     const toggleLocale = () => {
         setLocale(locale === "es" ? "en" : "es");
     };
 
+    const toggleMenu = () => {
+        setOpen((isOpen) => !isOpen);
+    };
+
+    const menuButtonLabel = open
+        ? locale === "es" ? "Cerrar menú" : "Close menu"
+        : locale === "es" ? "Abrir menú" : "Open menu";
+
+    const localeButtonLabel = locale === "es" ? "Cambiar a inglés" : "Switch to Spanish";
+
     return (
-        <nav className="w-full border-b border-gray-200 bg-white py-2 z-50 sticky top-0 flex flex-col md:flex-row justify-center items-center px-8 xl:px-0 mb-8">
-            
-            {/* Top bar */}
-            <div className="flex justify-between items-center w-full md:w-268">
-                
-                <h1 className="text-primary font-bold text-3xl">
-                    DG
-                </h1>
-
-                {/* Mobile button */}
-                <button
-                    className="md:hidden text-2xl"
-                    onClick={() => setOpen(!open)}
-                >
-                    ☰
-                </button>
-
-                {/* Desktop menu */}
-                <ul className="hidden md:flex justify-center items-center">
-                    {items.map((item) => {
-                        const isActive = currentSection === item.id;
-
-                        return (
-                        <li
-                            key={item.name}
-                            className={`
-                                py-2 mx-4 lg:mx-6 cursor-pointer transition-all duration-200 text-center text-primary
-                                ${isActive
-                                    ? "border-b-2 border-primary font-bold"
-                                    : "border-b-2 border-transparent hover:border-primary hover:font-bold active:border-primary active:font-bold"
-                                }
-                            `}
-                        >
-                            <Link href={item.href} aria-current={isActive ? "location" : undefined}>
-                                {item.name}
-                            </Link>
-                        </li>
-                        );
-                    })}
-                </ul>
-
-                {/* Desktop actions */}
-                <div className="hidden md:flex items-center gap-3">
-                    <button
-                        onClick={toggleLocale}
-                        className="border px-3 py-2 text-sm font-medium hover:bg-primary hover:text-white active:bg-primary-70 active:text-white transition-all duration-300"
+        <nav
+            aria-label={locale === "es" ? "Navegación principal" : "Main navigation"}
+            className="sticky top-0 z-50 mb-3 w-full px-4 pt-3 sm:px-6 lg:px-8"
+        >
+            <div className="relative mx-auto w-full max-w-6xl">
+                <div className="apple-material flex min-h-16 items-center justify-between gap-4 rounded-full border border-white/80 bg-white/70 px-3 shadow-[0_16px_45px_-28px_rgba(31,41,55,0.55)] backdrop-blur-xl sm:px-4">
+                    <Link
+                        href="/#inicio"
+                        aria-label="David García"
+                        className="group flex min-h-12 shrink-0 items-center gap-2 rounded-full px-1.5 pr-3 text-primary transition-colors hover:bg-white/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary motion-reduce:transition-none"
                     >
-                        {locale === "es" ? "EN" : "ES"}
-                    </button>
-                    <a
-                        href={locale === "es"
-                            ? "https://github.com/ChromeBridge321/Portfolio/releases/download/CV/DavidCV.pdf"
-                            : "https://github.com/ChromeBridge321/Portfolio/releases/download/Resume/DavidResume.pdf"
-                        }
-                        download
-                        className="border px-6 py-2 hover:bg-primary hover:text-white active:bg-primary-70 active:text-white transition-all duration-300 text-center"
-                    >
-                        {t("nav.resume")}
-                    </a>
-                </div>
-            </div>
+                        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-xs font-bold tracking-[0.16em] text-white shadow-sm transition-transform duration-300 group-hover:scale-105 motion-reduce:transition-none">
+                            DG
+                        </span>
+                        <span className="hidden text-sm font-bold tracking-[-0.02em] sm:inline">David García</span>
+                    </Link>
 
-            {/* Mobile menu */}
-            {open && (
-                <div className="md:hidden absolute top-full left-0 w-full max-h-[80vh] bg-white border-b border-gray-200 shadow-lg flex flex-col items-start gap-1 py-2 px-8 z-50 overflow-y-auto">
-                    {items.map((item) => {
-                        const isActive = currentSection === item.id;
+                    <ul className="hidden items-center gap-1 rounded-full bg-primary/5 p-1 md:flex">
+                        {items.map((item) => {
+                            const isActive = currentSection === item.id;
 
-                        return (
-                        <Link
-                            key={item.name}
-                            href={item.href}
-                            onClick={() => setOpen(false)}
-                            className={`w-full py-3 border-b border-gray-200 text-left ${
-                                isActive ? "font-bold text-primary" : "text-secondary-40"
-                            }`}
-                            aria-current={isActive ? "location" : undefined}
-                        >
-                            {item.name}
-                        </Link>
-                        );
-                    })}
+                            return (
+                                <li key={item.id}>
+                                    <Link
+                                        href={item.href}
+                                        aria-current={isActive ? "location" : undefined}
+                                        className={`inline-flex min-h-10 items-center rounded-full px-3.5 text-sm font-semibold transition-[background-color,box-shadow,color,transform] duration-300 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary motion-reduce:transition-none ${isActive
+                                            ? "bg-primary text-white shadow-md shadow-primary/15"
+                                            : "text-secondary-40 hover:bg-white/80 hover:text-primary"
+                                            }`}
+                                    >
+                                        {item.name}
+                                    </Link>
+                                </li>
+                            );
+                        })}
+                    </ul>
 
-                    <div className="flex w-full gap-2 mt-2">
+                    <div className="hidden items-center gap-2 md:flex">
                         <button
+                            type="button"
                             onClick={toggleLocale}
-                            className="border px-4 py-3 flex-1 text-left active:bg-primary active:text-white transition-all duration-100"
+                            aria-label={localeButtonLabel}
+                            className="inline-flex min-h-11 min-w-11 items-center justify-center gap-1.5 rounded-full border border-primary/10 bg-white/60 px-3 text-xs font-bold tracking-wide text-secondary-40 transition-[background-color,color,transform] duration-300 hover:bg-primary hover:text-white active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary motion-reduce:transition-none"
                         >
-                            {locale === "es" ? "English" : "Español"}
+                            <LanguageRounded aria-hidden="true" sx={{ fontSize: 17 }} />
+                            {locale === "es" ? "EN" : "ES"}
                         </button>
                         <a
-                            href={locale === "es"
-                                ? "https://github.com/ChromeBridge321/Portfolio/releases/download/CV/DavidCV.pdf"
-                                : "https://github.com/ChromeBridge321/Portfolio/releases/download/Resume/DavidResume.pdf"
-                            }
+                            href={resumeUrl}
                             download
-                            className="border px-4 py-3 flex-1 text-left active:bg-primary active:text-white transition-all duration-100"
+                            aria-label={t("nav.resume")}
+                            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-primary px-4 text-sm font-bold text-white shadow-sm transition-[background-color,box-shadow,transform] duration-300 hover:bg-primary-80 hover:shadow-md active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary motion-reduce:transition-none"
                         >
+                            <DownloadRounded aria-hidden="true" sx={{ fontSize: 17 }} />
                             {t("nav.resume")}
                         </a>
                     </div>
+
+                    <button
+                        type="button"
+                        onClick={toggleMenu}
+                        aria-label={menuButtonLabel}
+                        aria-expanded={open}
+                        aria-controls="mobile-navigation"
+                        className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-primary text-white shadow-sm transition-[background-color,transform] duration-300 hover:bg-primary-80 active:scale-[0.95] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary md:hidden motion-reduce:transition-none"
+                    >
+                        {open ? <CloseRounded aria-hidden="true" /> : <MenuRounded aria-hidden="true" />}
+                    </button>
                 </div>
-            )}
+
+                {open && (
+                    <div
+                        id="mobile-navigation"
+                        className="apple-material absolute inset-x-0 top-[calc(100%+0.5rem)] overflow-hidden rounded-[1.5rem] border border-white/80 bg-white/80 p-2 shadow-[0_20px_55px_-25px_rgba(31,41,55,0.5)] backdrop-blur-xl animate-materialize"
+                    >
+                        <ul className="grid gap-1">
+                            {items.map((item) => {
+                                const isActive = currentSection === item.id;
+
+                                return (
+                                    <li key={item.id}>
+                                        <Link
+                                            href={item.href}
+                                            onClick={() => setOpen(false)}
+                                            aria-current={isActive ? "location" : undefined}
+                                            className={`flex min-h-12 items-center rounded-xl px-4 text-sm font-semibold transition-[background-color,color,transform] duration-200 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-primary motion-reduce:transition-none ${isActive
+                                                ? "bg-primary text-white shadow-sm"
+                                                : "text-secondary-30 hover:bg-white hover:text-primary"
+                                                }`}
+                                        >
+                                            {item.name}
+                                        </Link>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+
+                        <div className="mt-2 grid grid-cols-[auto_1fr] gap-2 border-t border-neutral-90/80 pt-2">
+                            <button
+                                type="button"
+                                onClick={toggleLocale}
+                                aria-label={localeButtonLabel}
+                                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-primary/10 bg-white px-4 text-sm font-bold text-secondary-40 transition-[background-color,color,transform] duration-200 hover:bg-primary hover:text-white active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-primary motion-reduce:transition-none"
+                            >
+                                <LanguageRounded aria-hidden="true" sx={{ fontSize: 18 }} />
+                                {locale === "es" ? "EN" : "ES"}
+                            </button>
+                            <a
+                                href={resumeUrl}
+                                download
+                                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-primary px-4 text-sm font-bold text-white transition-[background-color,transform] duration-200 hover:bg-primary-80 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-primary motion-reduce:transition-none"
+                            >
+                                <DownloadRounded aria-hidden="true" sx={{ fontSize: 18 }} />
+                                {t("nav.resume")}
+                            </a>
+                        </div>
+                    </div>
+                )}
+            </div>
         </nav>
     );
 }
