@@ -1,186 +1,250 @@
-"use client"
-import { useState, useEffect } from "react"
-import { PhotoCamera, SportsEsports, Coffee, ChevronLeft, ChevronRight, Movie } from "@mui/icons-material"
-import HeadsetIcon from '@mui/icons-material/Headset';
-import Image from "next/image"
-import img1 from "@/assets/hobbies/img1.webp"
-import img2 from "@/assets/hobbies/img2.webp"
-import img4 from "@/assets/hobbies/img4.webp"
-import img6 from "@/assets/hobbies/img6.webp"
-import img7 from "@/assets/hobbies/img7.webp"
-import img8 from "@/assets/hobbies/img8.webp"
-import img9 from "@/assets/hobbies/img9.webp"
-import gaming from "@/assets/hobbies/gaming.webp"
-import musica from "@/assets/hobbies/musica.webp"
-import { useI18n } from "@/lib/i18n/context"
+"use client";
+
+import ChevronLeftRounded from "@mui/icons-material/ChevronLeftRounded";
+import ChevronRightRounded from "@mui/icons-material/ChevronRightRounded";
+import HeadsetOutlined from "@mui/icons-material/HeadsetOutlined";
+import MovieOutlined from "@mui/icons-material/MovieOutlined";
+import PhotoCameraOutlined from "@mui/icons-material/PhotoCameraOutlined";
+import SportsEsportsOutlined from "@mui/icons-material/SportsEsportsOutlined";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import img1 from "@/assets/hobbies/img1.webp";
+import img2 from "@/assets/hobbies/img2.webp";
+import img4 from "@/assets/hobbies/img4.webp";
+import img6 from "@/assets/hobbies/img6.webp";
+import img7 from "@/assets/hobbies/img7.webp";
+import img8 from "@/assets/hobbies/img8.webp";
+import img9 from "@/assets/hobbies/img9.webp";
+import gaming from "@/assets/hobbies/gaming.webp";
+import musica from "@/assets/hobbies/musica.webp";
+import { useI18n } from "@/lib/i18n/context";
 
 const carouselImages = [
-    { src: img1, alt: "Fotografía 1" },
-    { src: img2, alt: "Fotografía 2" },
-    { src: img4, alt: "Fotografía 3" },
-    { src: img6, alt: "Fotografía 4" },
-    { src: img7, alt: "Fotografía 5" },
-    { src: img8, alt: "Fotografía 6" },
-    { src: img9, alt: "Fotografía 7" },
-]
+    { src: img1, alt: "Fotografía personal 1" },
+    { src: img2, alt: "Fotografía personal 2" },
+    { src: img4, alt: "Fotografía personal 3" },
+    { src: img6, alt: "Fotografía personal 4" },
+    { src: img7, alt: "Fotografía personal 5" },
+    { src: img8, alt: "Fotografía personal 6" },
+    { src: img9, alt: "Fotografía personal 7" },
+];
 
 function PhotoCarousel() {
-    const [current, setCurrent] = useState(0)
+    const [current, setCurrent] = useState(0);
+    const [isPaused, setIsPaused] = useState(false);
+    const { locale } = useI18n();
 
     useEffect(() => {
-        const timer = setInterval(() => {
-            setCurrent((prev) => (prev + 1) % carouselImages.length)
-        }, 4000)
-        return () => clearInterval(timer)
-    }, [])
+        if (isPaused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            return;
+        }
 
-    const prev = () => setCurrent((c) => (c - 1 + carouselImages.length) % carouselImages.length)
-    const next = () => setCurrent((c) => (c + 1) % carouselImages.length)
+        const timer = window.setInterval(() => {
+            setCurrent((previous) => (previous + 1) % carouselImages.length);
+        }, 4500);
+
+        return () => window.clearInterval(timer);
+    }, [isPaused]);
+
+    const previous = () => setCurrent((currentImage) => (currentImage - 1 + carouselImages.length) % carouselImages.length);
+    const next = () => setCurrent((currentImage) => (currentImage + 1) % carouselImages.length);
+    const photoWord = locale === "es" ? "fotografía" : "photo";
+    const carouselLabel = locale === "es" ? "Galería de fotografía" : "Photography gallery";
+    const previousLabel = locale === "es" ? "Fotografía anterior" : "Previous photo";
+    const nextLabel = locale === "es" ? "Siguiente fotografía" : "Next photo";
 
     return (
-        <div className="relative w-full h-100 overflow-hidden group">
-            {carouselImages.map((img, i) => (
+        <div
+            className="group relative h-[22rem] overflow-hidden bg-primary sm:h-[29rem]"
+            role="region"
+            aria-label={carouselLabel}
+            onFocus={() => setIsPaused(true)}
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+        >
+            {carouselImages.map((image, index) => (
                 <div
-                    key={i}
-                    className={`absolute inset-0 transition-opacity duration-700 ${i === current ? "opacity-100" : "opacity-0"}`}
+                    key={image.alt}
+                    className={`absolute inset-0 transition-opacity duration-700 motion-reduce:transition-none ${index === current ? "opacity-100" : "opacity-0"}`}
+                    aria-hidden={index !== current}
                 >
                     <Image
-                        className="w-full h-full object-cover"
-                        src={img.src}
-                        alt={img.alt}
+                        className="h-full w-full object-cover transition-transform duration-[4500ms] motion-safe:scale-[1.02] motion-safe:group-hover:scale-[1.05] motion-reduce:transition-none motion-reduce:transform-none"
+                        src={image.src}
+                        alt={image.alt}
                         fill
-                        sizes="(max-width: 768px) 100vw, 66vw"
+                        sizes="(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 66vw, 720px"
                     />
                 </div>
             ))}
+            <div aria-hidden="true" className="absolute inset-0 bg-linear-to-t from-primary/80 via-transparent to-primary/5" />
+
+            <div className="absolute inset-x-4 top-4 flex items-start justify-between sm:inset-x-5 sm:top-5">
+                <span className="rounded-full border border-white/20 bg-primary/45 px-3 py-1.5 text-[0.65rem] font-bold tracking-[0.18em] text-white backdrop-blur-md">
+                    {String(current + 1).padStart(2, "0")} / {String(carouselImages.length).padStart(2, "0")}
+                </span>
+                <span className="rounded-full border border-white/20 bg-primary/45 px-3 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.16em] text-white/80 backdrop-blur-md">
+                    {photoWord}
+                </span>
+            </div>
+
             <button
-                onClick={prev}
-                className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
+                type="button"
+                onClick={previous}
+                aria-label={previousLabel}
+                className="absolute left-3 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-primary/55 text-white opacity-100 shadow-lg backdrop-blur-md transition-[background-color,opacity,transform] duration-200 hover:bg-primary/80 active:scale-[0.94] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-within:opacity-100 motion-reduce:transition-none"
             >
-                <ChevronLeft />
+                <ChevronLeftRounded aria-hidden="true" />
             </button>
             <button
+                type="button"
                 onClick={next}
-                className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
+                aria-label={nextLabel}
+                className="absolute right-3 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-primary/55 text-white opacity-100 shadow-lg backdrop-blur-md transition-[background-color,opacity,transform] duration-200 hover:bg-primary/80 active:scale-[0.94] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-within:opacity-100 motion-reduce:transition-none"
             >
-                <ChevronRight />
+                <ChevronRightRounded aria-hidden="true" />
             </button>
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-                {carouselImages.map((_, i) => (
+
+            <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center rounded-full border border-white/15 bg-primary/45 px-1 backdrop-blur-md sm:bottom-5" role="tablist" aria-label={carouselLabel}>
+                {carouselImages.map((image, index) => (
                     <button
-                        key={i}
-                        onClick={() => setCurrent(i)}
-                        className={`w-2 h-2 rounded-full transition-colors cursor-pointer ${i === current ? "bg-white" : "bg-white/40"}`}
-                    />
+                        key={image.alt}
+                        type="button"
+                        role="tab"
+                        aria-selected={index === current}
+                        aria-label={`${photoWord} ${index + 1}`}
+                        onClick={() => setCurrent(index)}
+                        className="flex h-9 w-8 items-center justify-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-white"
+                    >
+                        <span aria-hidden="true" className={`h-1.5 rounded-full transition-[background-color,width] duration-300 ${index === current ? "w-5 bg-white" : "w-1.5 bg-white/45"}`} />
+                    </button>
                 ))}
             </div>
         </div>
-    )
+    );
 }
 
 export default function Hobbies() {
     const { t } = useI18n();
 
     return (
-        <div className="min-h-screen px-6 py-16 max-w-6xl mx-auto overflow-hidden">
-            <header className="mb-16 text-center animate-fade-in-up">
-                <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-primary mb-4">
-                    {t("hobbies.titulo")}
-                </h1>
-                <p className="text-lg text-secondary-30 max-w-2xl mx-auto">
-                    {t("hobbies.subtitulo")}
-                </p>
-            </header>
+        <div className="relative isolate overflow-hidden bg-neutral-100 px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28">
+            <div aria-hidden="true" className="pointer-events-none absolute -right-28 top-24 h-72 w-72 rounded-full bg-tertiary-95/80 blur-3xl" />
+            <div aria-hidden="true" className="pointer-events-none absolute -left-24 bottom-24 h-80 w-80 rounded-full bg-primary-10/70 blur-3xl" />
 
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
-                <div className="md:col-span-8 group">
-                    <div className="tonal-card h-full rounded-xl overflow-hidden flex flex-col">
+            <div className="relative mx-auto w-full max-w-6xl">
+                <header className="mb-12 grid gap-7 animate-materialize sm:mb-16 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] md:items-end md:gap-12">
+                    <div>
+                        <div className="mb-5 flex items-center gap-3 text-xs font-bold tracking-[0.22em] text-secondary-40">
+                            <span className="flex h-8 min-w-8 items-center justify-center rounded-full bg-primary text-[0.65rem] text-white shadow-sm">04</span>
+                            <span className="h-px w-12 bg-neutral-90" />
+                            <span>RITUALES</span>
+                        </div>
+                        <h1 id="hobbies-title" className="max-w-xl text-[clamp(2.75rem,6vw,5.5rem)] font-semibold leading-[0.92] tracking-[-0.055em] text-primary [font-optical-sizing:auto]">
+                            {t("hobbies.titulo")}
+                        </h1>
+                    </div>
+                    <p className="max-w-2xl text-lg leading-relaxed text-secondary-30 sm:text-xl">
+                        {t("hobbies.subtitulo")}
+                    </p>
+                </header>
+
+                <div className="grid grid-cols-1 gap-5 md:grid-cols-12">
+                    <article className="group overflow-hidden rounded-[1.75rem] border border-white/80 bg-white shadow-[0_22px_55px_-34px_rgba(31,41,55,0.55)] md:col-span-8">
                         <PhotoCarousel />
-                        <div className="p-6">
-                            <div className="flex items-center gap-2 mb-4">
-                                <PhotoCamera className="text-primary" />
-                                <span className="text-sm font-medium text-secondary-40 uppercase tracking-widest">{t("hobbies.fotografia")}</span>
+                        <div className="p-6 sm:p-8">
+                            <div className="flex items-center gap-3">
+                                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-white shadow-sm">
+                                    <PhotoCameraOutlined aria-hidden="true" fontSize="small" />
+                                </span>
+                                <div>
+                                    <p className="text-[0.62rem] font-bold tracking-[0.2em] text-secondary-50">01</p>
+                                    <h2 className="text-sm font-bold uppercase tracking-[0.16em] text-primary">{t("hobbies.fotografia")}</h2>
+                                </div>
                             </div>
-                            <h3 className="text-2xl md:text-3xl font-semibold text-primary mb-4">{t("hobbies.capturando")}</h3>
-                            <p className="text-base text-secondary-30 mb-4 leading-relaxed">
+                            <h3 className="mt-6 text-2xl font-semibold tracking-[-0.03em] text-primary sm:text-3xl">{t("hobbies.capturando")}</h3>
+                            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-secondary-30 sm:text-base">
                                 {t("hobbies.fotografiaDesc")}
                             </p>
-                            <div className="flex gap-2">
-                                <span className="px-3 py-1 bg-neutral-95 text-secondary-30 rounded-full text-xs font-medium">{t("hobbies.composicion")}</span>
-                                <span className="px-3 py-1 bg-neutral-95 text-secondary-30 rounded-full text-xs font-medium">{t("hobbies.luzNatural")}</span>
+                            <div className="mt-5 flex flex-wrap gap-2">
+                                <span className="rounded-full bg-neutral-95 px-3 py-1.5 text-xs font-semibold text-secondary-40">{t("hobbies.composicion")}</span>
+                                <span className="rounded-full bg-neutral-95 px-3 py-1.5 text-xs font-semibold text-secondary-40">{t("hobbies.luzNatural")}</span>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </article>
 
-                <div className="md:col-span-4 flex flex-col gap-6">
-                    <div className="tonal-card flex-1 rounded-xl p-6 flex flex-col justify-center items-center text-center">
-                        <div className="flex items-center gap-2 mb-4">
-                            <SportsEsports className="text-primary" />
-                            <span className="text-sm font-medium text-secondary-40 uppercase tracking-widest">{t("hobbies.gaming")}</span>
-                        </div>
-                        <h3 className="text-xl font-semibold text-primary mb-2">{t("hobbies.jugarParaGanar")}</h3>
-                        <p className="text-base text-secondary-30">
-                            {t("hobbies.gamingDesc")}
-                        </p>
-                    </div>
-                    <div className="relative rounded-xl overflow-hidden h-75 group">
-                        <Image
-                            className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110"
-                            src={gaming}
-                            alt="Accesorios Gamer"
-                            fill
-                            sizes="(max-width: 768px) 100vw, 33vw"
-                        />
-                    </div>
-                </div>
-
-                <div className="md:col-span-8 group">
-                    <div className="tonal-card h-full rounded-xl flex flex-col md:flex-row overflow-hidden">
-                        <div className="p-6 flex-1 flex flex-col justify-center">
-                            <div className="flex items-center gap-2 mb-4">
-                                <HeadsetIcon className="text-primary" />
-                                <span className="text-sm font-medium text-secondary-40 uppercase tracking-widest">{t("hobbies.ritual")}</span>
+                    <div className="grid gap-5 md:col-span-4 md:grid-rows-[minmax(0,1fr)_minmax(15rem,0.85fr)]">
+                        <article className="relative isolate flex min-h-64 flex-col justify-between overflow-hidden rounded-[1.75rem] bg-primary p-6 text-white sm:p-8">
+                            <div aria-hidden="true" className="absolute -bottom-16 -right-16 h-48 w-48 rounded-full border border-tertiary-90/20" />
+                            <div className="relative">
+                                <div className="flex items-center justify-between gap-3">
+                                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-tertiary-90">
+                                        <SportsEsportsOutlined aria-hidden="true" />
+                                    </span>
+                                    <span className="text-[0.62rem] font-bold tracking-[0.2em] text-white/50">02</span>
+                                </div>
+                                <h2 className="mt-8 text-2xl font-semibold tracking-[-0.03em]">{t("hobbies.jugarParaGanar")}</h2>
+                                <p className="mt-3 text-sm leading-relaxed text-white/70">{t("hobbies.gamingDesc")}</p>
                             </div>
-                            <h3 className="text-xl font-semibold text-primary mb-2">{t("hobbies.culturaMusica")}</h3>
-                            <p className="text-base text-secondary-30">
-                                {t("hobbies.musicaDesc")}
-                            </p>
-                        </div>
-                        <div className="w-full md:w-1/2 h-64 md:h-auto overflow-hidden">
+                            <p className="relative mt-8 text-xs font-bold uppercase tracking-[0.18em] text-tertiary-90">{t("hobbies.gaming")}</p>
+                        </article>
+
+                        <div className="group relative min-h-64 overflow-hidden rounded-[1.75rem] bg-primary">
                             <Image
-                                className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+                                className="h-full w-full object-cover transition-transform duration-700 motion-safe:group-hover:scale-[1.05] motion-reduce:transition-none"
+                                src={gaming}
+                                alt="Accesorios gamer"
+                                fill
+                                sizes="(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 33vw, 360px"
+                            />
+                            <div aria-hidden="true" className="absolute inset-0 bg-linear-to-t from-primary/75 via-transparent to-transparent" />
+                        </div>
+                    </div>
+
+                    <article className="group flex flex-col overflow-hidden rounded-[1.75rem] border border-white/80 bg-white shadow-[0_18px_45px_-32px_rgba(31,41,55,0.5)] md:col-span-8 md:flex-row">
+                        <div className="flex flex-1 flex-col justify-center p-6 sm:p-8">
+                            <div className="flex items-center gap-3">
+                                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-95 text-primary">
+                                    <HeadsetOutlined aria-hidden="true" />
+                                </span>
+                                <div>
+                                    <p className="text-[0.62rem] font-bold tracking-[0.2em] text-secondary-50">03</p>
+                                    <h2 className="text-sm font-bold uppercase tracking-[0.16em] text-primary">{t("hobbies.ritual")}</h2>
+                                </div>
+                            </div>
+                            <h3 className="mt-6 text-2xl font-semibold tracking-[-0.03em] text-primary">{t("hobbies.culturaMusica")}</h3>
+                            <p className="mt-3 text-sm leading-relaxed text-secondary-30 sm:text-base">{t("hobbies.musicaDesc")}</p>
+                        </div>
+                        <div className="relative min-h-64 overflow-hidden sm:min-w-[42%]">
+                            <Image
+                                className="h-full w-full object-cover transition-transform duration-700 motion-safe:group-hover:scale-[1.05] motion-reduce:transition-none"
                                 src={musica}
-                                alt="Audifonos"
-                                width={400}
-                                height={256}
-                                sizes="(max-width: 768px) 100vw, 50vw"
+                                alt="Audífonos"
+                                fill
+                                sizes="(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 42vw, 420px"
                             />
                         </div>
-                    </div>
-                </div>
+                    </article>
 
-                <div className="md:col-span-4 group ">
-                    <div className="tonal-card h-full rounded-xl p-6 text-center flex justify-center items-center flex-col">
-                        <div className="flex items-center justify-center gap-2 mb-4">
-                            <Movie className="text-primary" />
-                            <span className="text-sm font-medium text-secondary-40 uppercase tracking-widest">{t("hobbies.seriesPeliculas")}</span>
+                    <article className="flex min-h-64 flex-col justify-center rounded-[1.75rem] bg-tertiary-95 p-6 sm:p-8 md:col-span-4">
+                        <div className="flex items-center justify-between gap-3">
+                            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-primary shadow-sm">
+                                <MovieOutlined aria-hidden="true" />
+                            </span>
+                            <span className="text-[0.62rem] font-bold tracking-[0.2em] text-secondary-50">04</span>
                         </div>
-                        <h3 className="text-xl font-semibold text-primary mb-2">{t("hobbies.historiasInspiran")}</h3>
-                        <p className="text-base text-secondary-30">
-                            {t("hobbies.seriesDesc")}
-                        </p>
-                    </div>
+                        <h2 className="mt-8 text-2xl font-semibold tracking-[-0.03em] text-primary">{t("hobbies.historiasInspiran")}</h2>
+                        <p className="mt-3 text-sm leading-relaxed text-secondary-30">{t("hobbies.seriesDesc")}</p>
+                        <p className="mt-7 text-xs font-bold uppercase tracking-[0.18em] text-secondary-40">{t("hobbies.seriesPeliculas")}</p>
+                    </article>
+                </div>
+
+                <div className="mx-auto mt-16 max-w-2xl border-t border-neutral-90 pt-8 text-center animate-materialize" style={{ animationDelay: "180ms" }}>
+                    <p className="text-lg leading-relaxed tracking-[-0.01em] text-secondary-40 sm:text-xl">
+                        &quot;{t("hobbies.citaFinal")}&quot;
+                    </p>
                 </div>
             </div>
-
-            <div className="my-16 flex justify-center animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
-                <div className="w-16 h-px bg-neutral-90"></div>
-            </div>
-
-            <section className="text-center max-w-xl mx-auto italic text-secondary-40 text-lg animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
-                &quot;{t("hobbies.citaFinal")}&quot;
-            </section>
         </div>
-    )
+    );
 }
