@@ -6,6 +6,24 @@ import Link from "next/link";
 import { proyectos } from "@/DB/proyectos";
 import { useI18n } from "@/lib/i18n/context";
 
+function ProjectStatusBadge({ estado, tieneImagen, label }: { estado?: string; tieneImagen: boolean; label: string }) {
+    if (estado !== "desarrollo") {
+        return null;
+    }
+
+    return (
+        <span
+            role="status"
+            className={`absolute right-4 top-4 rounded-full px-3 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.12em] shadow-sm backdrop-blur-md sm:right-5 sm:top-5 ${tieneImagen
+                ? "border border-white/80 bg-white/90 text-primary"
+                : "border border-white/15 bg-white/10 text-white"
+                }`}
+        >
+            {label}
+        </span>
+    );
+}
+
 export default function Proyectos() {
     const { t } = useI18n();
 
@@ -34,8 +52,9 @@ export default function Proyectos() {
 
                 <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
                     {proyectos.map((proyecto, index) => {
-                        const tieneImagen = proyecto.imageUrl !== "/";
-                        const esProyectoEnDesarrollo = "enDesarrollo" in proyecto && proyecto.enDesarrollo === true;
+                        const imageUrl = proyecto.imageUrl;
+                        const imageSource = imageUrl === null || imageUrl === "/" ? null : imageUrl;
+                        const tieneImagen = imageSource !== null && imageSource !== "";
                         const numero = String(index + 1).padStart(2, "0");
 
                         return (
@@ -46,11 +65,11 @@ export default function Proyectos() {
                                 style={{ animationDelay: `${index * 70}ms` }}
                             >
                                 <div className={`relative aspect-[16/10] overflow-hidden ${tieneImagen ? "bg-neutral-95" : "bg-primary"}`}>
-                                    {tieneImagen ? (
+                                    {imageSource ? (
                                         <>
                                             <Image
                                                 className="object-cover object-top transition-transform duration-700 motion-safe:group-hover:scale-[1.045] motion-reduce:transition-none"
-                                                src={proyecto.imageUrl}
+                                                src={imageSource}
                                                 alt={proyecto.nombre}
                                                 fill
                                                 priority={index === 0}
@@ -70,16 +89,11 @@ export default function Proyectos() {
                                     <span className={`absolute left-4 top-4 flex h-9 min-w-9 items-center justify-center rounded-full px-2 text-xs font-bold shadow-sm backdrop-blur-md sm:left-5 sm:top-5 ${tieneImagen ? "bg-white/90 text-primary" : "border border-white/20 bg-white/10 text-white"}`}>
                                         {numero}
                                     </span>
-                                    {tieneImagen && esProyectoEnDesarrollo && (
-                                        <span className="absolute right-4 top-4 rounded-full border border-white/80 bg-white/90 px-3 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.12em] text-primary shadow-sm backdrop-blur-md sm:right-5 sm:top-5">
-                                            {t("proyectos.enDesarrollo")}
-                                        </span>
-                                    )}
-                                    {!tieneImagen && (
-                                        <span className="absolute bottom-4 left-4 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.18em] text-white/80 backdrop-blur-md sm:bottom-5 sm:left-5">
-                                            {t("proyectos.enDesarrollo")}
-                                        </span>
-                                    )}
+                                    <ProjectStatusBadge
+                                        estado={proyecto.estado}
+                                        tieneImagen={tieneImagen}
+                                        label={t("proyectos.enDesarrollo")}
+                                    />
                                 </div>
 
                                 <div className="flex flex-1 flex-col p-5 sm:p-7">
