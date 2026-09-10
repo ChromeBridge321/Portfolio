@@ -1,10 +1,22 @@
+import type { StaticImageData } from "next/image"
 import calculadoraImg from "@/assets/proyectos/calculadora.webp"
 import garagemeet from "@/assets/proyectos/garagemeet.webp"
 import poelmc from "@/assets/proyectos/poelmc.webp"
 import topologix from "@/assets/proyectos/topologix.webp"
 import reporteador from "@/assets/proyectos/reporteador.webp"
-import infaadep from "@/assets/proyectos/infaadep.webp"
-export const proyectos = [
+import infaadep from '@/assets/proyectos/infaadep.webp';
+
+type Proyecto = {
+    id: number
+    nombre: string
+    translationKey: string
+    tecnologias: string[]
+    imageUrl: StaticImageData | string | null
+    url: string
+    estado?: string
+}
+
+export const proyectos: Proyecto[] = [
     {
         id: 1,
         nombre: "POELMC",
@@ -52,6 +64,6 @@ export const proyectos = [
         tecnologias: ["Angular", "Tailwind"],
         imageUrl: infaadep,
         url: "",
-        enDesarrollo: true
+        estado: "desarrollo"
     }
 ]
