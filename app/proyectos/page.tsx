@@ -32,25 +32,20 @@ export default function Proyectos() {
                     </p>
                 </header>
 
-                <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-12">
+                <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
                     {proyectos.map((proyecto, index) => {
                         const tieneImagen = proyecto.imageUrl !== "/";
-                        const esProyectoEnDesarrollo = !tieneImagen && index === proyectos.length - 1;
+                        const esProyectoEnDesarrollo = "enDesarrollo" in proyecto && proyecto.enDesarrollo === true;
                         const numero = String(index + 1).padStart(2, "0");
-                        const layout = index === 0
-                            ? "lg:col-span-8"
-                            : esProyectoEnDesarrollo
-                                ? "lg:col-span-12"
-                                : "lg:col-span-4";
 
                         return (
                             <article
                                 key={proyecto.id}
                                 aria-labelledby={`proyecto-${proyecto.id}-title`}
-                                className={`apple-lift group flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-white/80 bg-white shadow-[0_18px_45px_-32px_rgba(31,41,55,0.6)] transition-[box-shadow,transform] duration-500 hover:-translate-y-1 hover:shadow-[0_24px_55px_-28px_rgba(31,41,55,0.45)] animate-materialize motion-reduce:transition-none ${layout} ${esProyectoEnDesarrollo ? "lg:grid lg:grid-cols-[minmax(0,0.7fr)_minmax(0,1.3fr)]" : ""}`}
+                                className="apple-lift group flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-white/80 bg-white shadow-[0_18px_45px_-32px_rgba(31,41,55,0.6)] transition-[box-shadow,transform] duration-500 hover:-translate-y-1 hover:shadow-[0_24px_55px_-28px_rgba(31,41,55,0.45)] animate-materialize motion-reduce:transition-none"
                                 style={{ animationDelay: `${index * 70}ms` }}
                             >
-                                <div className={`relative aspect-[16/10] overflow-hidden ${tieneImagen ? "bg-neutral-95" : "bg-primary"} ${esProyectoEnDesarrollo ? "lg:aspect-auto lg:min-h-64" : ""}`}>
+                                <div className={`relative aspect-[16/10] overflow-hidden ${tieneImagen ? "bg-neutral-95" : "bg-primary"}`}>
                                     {tieneImagen ? (
                                         <>
                                             <Image
@@ -59,7 +54,7 @@ export default function Proyectos() {
                                                 alt={proyecto.nombre}
                                                 fill
                                                 priority={index === 0}
-                                                sizes="(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 50vw, 58vw"
+                                                sizes="(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 50vw, 33vw"
                                             />
                                             <div aria-hidden="true" className="absolute inset-0 bg-linear-to-t from-primary/70 via-primary/5 to-transparent opacity-80" />
                                         </>
@@ -75,6 +70,11 @@ export default function Proyectos() {
                                     <span className={`absolute left-4 top-4 flex h-9 min-w-9 items-center justify-center rounded-full px-2 text-xs font-bold shadow-sm backdrop-blur-md sm:left-5 sm:top-5 ${tieneImagen ? "bg-white/90 text-primary" : "border border-white/20 bg-white/10 text-white"}`}>
                                         {numero}
                                     </span>
+                                    {tieneImagen && esProyectoEnDesarrollo && (
+                                        <span className="absolute right-4 top-4 rounded-full border border-white/80 bg-white/90 px-3 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.12em] text-primary shadow-sm backdrop-blur-md sm:right-5 sm:top-5">
+                                            {t("proyectos.enDesarrollo")}
+                                        </span>
+                                    )}
                                     {!tieneImagen && (
                                         <span className="absolute bottom-4 left-4 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.18em] text-white/80 backdrop-blur-md sm:bottom-5 sm:left-5">
                                             {t("proyectos.enDesarrollo")}

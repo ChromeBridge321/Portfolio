@@ -3,7 +3,7 @@ import garagemeet from "@/assets/proyectos/garagemeet.webp"
 import poelmc from "@/assets/proyectos/poelmc.webp"
 import topologix from "@/assets/proyectos/topologix.webp"
 import reporteador from "@/assets/proyectos/reporteador.webp"
-
+import infaadep from "@/assets/proyectos/infaadep.webp"
 export const proyectos = [
     {
         id: 1,
@@ -50,7 +50,8 @@ export const proyectos = [
         nombre: "INFAADEP RRHH",
         translationKey: "proyectos.data.infaadep",
         tecnologias: ["Angular", "Tailwind"],
-        imageUrl: "/",
-        url: ""
+        imageUrl: infaadep,
+        url: "",
+        enDesarrollo: true
     }
 ]

@@ -1,13 +1,11 @@
 "use client";
 
 import Api from "@mui/icons-material/Api";
-import Architecture from "@mui/icons-material/Architecture";
-import CloudDone from "@mui/icons-material/CloudDone";
+import HttpsIcon from '@mui/icons-material/Https';
 import Code from "@mui/icons-material/Code";
 import Css from "@mui/icons-material/Css";
 import DataObject from "@mui/icons-material/DataObject";
 import Devices from "@mui/icons-material/Devices";
-import Draw from "@mui/icons-material/Draw";
 import Javascript from "@mui/icons-material/Javascript";
 import Storage from "@mui/icons-material/Storage";
 import Terminal from "@mui/icons-material/Terminal";
@@ -33,30 +31,6 @@ function TechCardHorizontal({ icon, label }: { icon: React.ReactNode; label: str
                 {icon}
             </span>
             <span className="text-sm font-semibold text-secondary-40 group-hover:text-primary">{label}</span>
-        </li>
-    );
-}
-
-function ToolCard({ icon, label, progress }: { icon: React.ReactNode; label: string; progress: number }) {
-    return (
-        <li className="apple-lift rounded-2xl border border-neutral-90 bg-white p-4 shadow-sm transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:border-primary/15 hover:shadow-md motion-reduce:transition-none">
-            <div className="flex items-center justify-between gap-4">
-                <div className="flex min-w-0 items-center gap-3">
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary/5 text-primary">{icon}</span>
-                    <span className="truncate text-sm font-semibold text-primary">{label}</span>
-                </div>
-                <span className="text-xs font-bold tracking-wide text-secondary-50">{progress}%</span>
-            </div>
-            <div
-                className="mt-4 h-1.5 overflow-hidden rounded-full bg-neutral-90"
-                role="meter"
-                aria-label={`${label}: ${progress}%`}
-                aria-valuemin={0}
-                aria-valuemax={100}
-                aria-valuenow={progress}
-            >
-                <div className="h-full rounded-full bg-primary" style={{ width: `${progress}%` }} />
-            </div>
         </li>
     );
 }
@@ -123,9 +97,10 @@ export default function Tecnologias() {
                             </div>
                             <h2 id="explorando-title" className="max-w-xs text-2xl font-semibold leading-tight tracking-[-0.03em]">{t("tecnologias.explorandoAhora")}</h2>
                             <div className="mt-6 flex flex-wrap gap-2">
-                                <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-semibold text-white">Next.js</span>
-                                <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-semibold text-white">Spring Boot</span>
+                                <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-semibold text-white">React</span>
+                                <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-semibold text-white">ASP.NET</span>
                                 <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-semibold text-white">Docker</span>
+                                <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-semibold text-white">DevOps</span>
                             </div>
                         </div>
                         <div className="relative mt-12">
@@ -139,7 +114,7 @@ export default function Tecnologias() {
                         </div>
                     </section>
 
-                    <section className="rounded-[1.5rem] bg-neutral-95 p-6 sm:p-8 md:col-span-6" aria-labelledby="backend-title">
+                    <section className="rounded-[1.5rem] bg-neutral-95 p-6 sm:p-8 md:col-span-12" aria-labelledby="backend-title">
                         <div className="flex items-center gap-3">
                             <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-neutral-90 bg-white text-primary shadow-sm">
                                 <Storage aria-hidden="true" />
@@ -149,29 +124,14 @@ export default function Tecnologias() {
                                 <h2 id="backend-title" className="text-xl font-semibold tracking-[-0.03em] text-primary sm:text-2xl">{t("tecnologias.backend")}</h2>
                             </div>
                         </div>
-                        <ul className="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-3" aria-label={t("tecnologias.backend")}>
+                        <ul className="mt-7 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4" aria-label={t("tecnologias.backend")}>
                             <TechCardHorizontal icon={<Terminal aria-hidden="true" fontSize="small" />} label="Laravel" />
-                            <TechCardHorizontal icon={<CloudDone aria-hidden="true" fontSize="small" />} label="AWS" />
+                            <TechCardHorizontal icon={<HttpsIcon aria-hidden="true" fontSize="small" />} label="JWT" />
                             <TechCardHorizontal icon={<Api aria-hidden="true" fontSize="small" />} label="REST" />
                             <TechCardHorizontal icon={<Storage aria-hidden="true" fontSize="small" />} label="PostgreSQL" />
                             <TechCardHorizontal icon={<Storage aria-hidden="true" fontSize="small" />} label="SQL Server" />
                             <TechCardHorizontal icon={<Storage aria-hidden="true" fontSize="small" />} label="MariaDB" />
-                        </ul>
-                    </section>
-
-                    <section className="rounded-[1.5rem] bg-neutral-95 p-6 sm:p-8 md:col-span-6" aria-labelledby="tools-title">
-                        <div className="flex items-center gap-3">
-                            <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-neutral-90 bg-white text-primary shadow-sm">
-                                <Architecture aria-hidden="true" />
-                            </span>
-                            <div>
-                                <p className="text-[0.62rem] font-bold tracking-[0.2em] text-secondary-50">04</p>
-                                <h2 id="tools-title" className="text-xl font-semibold tracking-[-0.03em] text-primary sm:text-2xl">{t("tecnologias.herramientas")}</h2>
-                            </div>
-                        </div>
-                        <ul className="mt-7 space-y-3" aria-label={t("tecnologias.herramientas")}>
-                            <ToolCard icon={<Draw aria-hidden="true" fontSize="small" />} label="Figma & UI/UX Design" progress={40} />
-                            <ToolCard icon={<GitHubIcon aria-hidden="true" fontSize="small" />} label="Git - GitHub" progress={45} />
+                            <TechCardHorizontal icon={<GitHubIcon aria-hidden="true" fontSize="small" />} label="Git & GitHub" />
                         </ul>
                     </section>
                 </div>
