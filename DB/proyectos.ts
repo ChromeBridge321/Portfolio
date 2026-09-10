@@ -55,7 +55,7 @@ export const proyectos: Proyecto[] = [
         translationKey: "proyectos.data.garagemeet",
         tecnologias: ["Angular", "Laravel", "Tailwind"],
         imageUrl: garagemeet,
-        url: ""
+        url: "https://garagemeet.jerox.dev"
     },
     {
         id: 6,
