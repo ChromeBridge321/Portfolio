@@ -63,7 +63,7 @@ export const proyectos: Proyecto[] = [
         translationKey: "proyectos.data.infaadep",
         tecnologias: ["Angular", "Tailwind"],
         imageUrl: infaadep,
-        url: "",
+        url: "https://infaadep-rrhh.netlify.app",
         estado: "desarrollo"
     }
 ]
